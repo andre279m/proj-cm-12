@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void onButtonHighScoreClicked() {
-        Intent intentChangeSetUpScreen = new Intent(this, HighScoreActivity.class);
-        startActivity(intentChangeSetUpScreen);
+        Intent intentChangeHighscoreScreen = new Intent(this, HighScoreActivity.class);
+        startActivity(intentChangeHighscoreScreen);
     }
 }
