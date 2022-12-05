@@ -16,10 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-
         >
-
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -117,7 +114,6 @@
                         android:textColor="@color/white"
                         android:textSize="20sp"
                         android:textStyle="bold" />
-
                     <TextView
                         android:id="@+id/rank2"
                         android:layout_width="106dp"
@@ -130,7 +126,6 @@
                         android:textColor="@color/white"
                         android:textSize="20sp"
                         android:textStyle="bold" />
-
                     <TextView
                         android:id="@+id/score2"
                         android:layout_width="106dp"
@@ -153,7 +148,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 >
-
                 <Button
                     android:id="@+id/button"
                     android:layout_width="wrap_content"
@@ -167,14 +161,8 @@
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:layout_centerInParent="true"
-
                     />
             </RelativeLayout>
-
         </LinearLayout>
-
-
     </androidx.cardview.widget.CardView>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
