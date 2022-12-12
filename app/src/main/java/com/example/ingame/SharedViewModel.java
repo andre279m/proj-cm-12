@@ -23,28 +23,23 @@ public class SharedViewModel extends ViewModel {
     private final MutableLiveData<PlayerModel> _playerModel = new MutableLiveData<>(new PlayerModel());
     public LiveData<PlayerModel> getPlayer() {return _playerModel;}
 
-    public void addPlayer(String email) {
+    public void addPlayer(String userID) {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Users");
-
-
-        Query qname3 = databaseReference.orderByChild("email").equalTo(email);
-        qname3.addValueEventListener(new ValueEventListener() {
+        databaseReference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot child: dataSnapshot.getChildren()) {
-                    Log.v("datas", ""+child.getValue());
-                    PlayerModel playerModel = child.getValue(PlayerModel.class);
-                    _playerModel.setValue(playerModel);
-                    Log.v("dto",""+playerModel);
-            }}
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                PlayerModel playerModel = snapshot.getValue(PlayerModel.class);
+                Log.v("dto",""+playerModel);
+                _playerModel.setValue(playerModel);
+
+            }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-
-
         });
+
         //_playerModel.setValue(playerModel);
     }
 

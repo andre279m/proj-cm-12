@@ -20,6 +20,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class AuthenticationPage extends AppCompatActivity {
     private FirebaseAuth mAuth;
@@ -73,8 +74,18 @@ public class AuthenticationPage extends AppCompatActivity {
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
             if (task.isSuccessful()){
                 Log.v("datass", "" + email);
-                sharedViewModel.addPlayer(email);
-                mainPage();
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                String userID = user.getUid();
+                if(user.isEmailVerified()){
+                    sharedViewModel.addPlayer(userID);
+                    mainPage();
+
+                }
+                else {
+                    user.sendEmailVerification();
+                    Toast.makeText(AuthenticationPage.this,"Check your email to verify your account",Toast.LENGTH_LONG).show();
+
+                }
             }else {
                 Toast.makeText(AuthenticationPage.this,"Check your credentials",Toast.LENGTH_LONG).show();
 
@@ -85,12 +96,14 @@ public class AuthenticationPage extends AppCompatActivity {
     private void registerPage() {
         Intent intentChangeRegisterPage = new Intent(this, RegisterPage.class);
         startActivity(intentChangeRegisterPage);
+        finish();
 
     }
 
     private void mainPage() {
         Intent intentChangeMainPage = new Intent(this, MainActivity.class);
         startActivity(intentChangeMainPage);
+        finish();
 
     }
 
