@@ -37,7 +37,7 @@ public class HighscoreAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View highScoreView = layoutInflater.inflate(R.layout.activity_custom_list_view, null);
+        View highScoreView = layoutInflater.inflate(R.layout.highscore_row_rview, null);
         TextView nameView = (TextView) highScoreView.findViewById(R.id.name);
         TextView scoreView = (TextView) highScoreView.findViewById(R.id.score);
         nameView.setText(nameList[position]);
