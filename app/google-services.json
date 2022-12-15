@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "168793147979",
+    "firebase_url": "https://ingame-b2c6b-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "ingame-b2c6b",
+    "storage_bucket": "ingame-b2c6b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:168793147979:android:6da4a3db3faf7ae1e85bce",
+        "android_client_info": {
+          "package_name": "com.example.ingame"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "168793147979-sbjg5amqu1nei562k75j8mk5fkqe0qv5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfsHnHMTc1DMWYX0FRBVeebp9M9OnoPSs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "168793147979-sbjg5amqu1nei562k75j8mk5fkqe0qv5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
