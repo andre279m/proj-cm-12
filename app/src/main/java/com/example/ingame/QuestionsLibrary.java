@@ -121,7 +121,23 @@ public class QuestionsLibrary {
             {"Miguel Ângelo", "Leonardo da Vinci", "Sandro Boticelli", "Rafael Sanzio"}
     };
 
-    private String mCorrectAnswers[] = {"Roots", "Leaves", "Flower", "Stem"};
+    private String mCorrectAnswers[] = {"Roots", "Leaves", "Flower", "Stem",
+
+            "Alcântara", "Coimbra", "à dor", "1986", "Vila de Rei",
+            "Descobrem-se as verdades", "2015", "Vacina", "Lucinda", "Braga",
+            "4", "3", "Portalegre",
+
+            "6", "Soprano", "Hattie McDaniel", "2015", "Amelia Earhart",
+            "Arthur Conan Doyle", "Coração de Viana",
+
+            "Won", "Teerão", "Amazonas", "Egito", "Ilha da Páscoa",
+            "Índia", "Kiribati", "Rússia", "1991", "Rússia", "Japão",
+
+            "116 anos", "Bailarino", "Peixes", "236", "Nadia Comaneci",
+            "Suzanne Collins", "Ministério da Justiça", "Nike",
+            "Edgar Degas", "Peugeot", "Orgulho e Preconceito", "Austrália",
+            "Serena Williams", "3", "22 meses", "2006", "da Revolta de Stonewall",
+            "Prata", "1969", "Michael Phelps", "Miguel Ângelo"};
 
     public String getQuestion(int a) {
         return mQuestions[a];
