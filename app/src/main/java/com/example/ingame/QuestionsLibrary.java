@@ -131,7 +131,7 @@ public class QuestionsLibrary {
             "Arthur Conan Doyle", "Coração de Viana",
 
             "Won", "Teerão", "Amazonas", "Egito", "Ilha da Páscoa",
-            "India", "Kiribati", "Rússia", "1991", "Rússia", "Japão",
+            "Índia", "Kiribati", "Rússia", "1991", "Rússia", "Japão",
 
             "116 anos", "Bailarino", "Peixes", "236", "Nadia Comaneci",
             "Suzanne Collins", "Ministério da Justiça", "Nike",
