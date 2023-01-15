@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Click listeners for each button
         buttonHighScore.setOnClickListener(__ -> onButtonHighScoreClicked());
-        buttonSetUp.setOnClickListener(__ -> onButtonSetUpClicked());
+        buttonSetUp.setOnClickListener(__ -> onButtonSetUpClicked(playerID));
         buttonLogout.setOnClickListener(__ -> onButtonLogoutClicked());
         buttonPlay.setOnClickListener( __ -> startGame(playerID));}
 
@@ -47,8 +47,9 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
 
-    private void onButtonSetUpClicked() {
+    private void onButtonSetUpClicked(String playerID) {
         Intent intentChangeSetUpScreen = new Intent(this, SetUpActivity.class);
+        intentChangeSetUpScreen.putExtra("playerID", playerID);
         startActivity(intentChangeSetUpScreen);
     }
 
