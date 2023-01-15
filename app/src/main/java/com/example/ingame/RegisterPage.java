@@ -17,7 +17,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class RegisterPage extends AppCompatActivity implements View.OnClickListener{
+public class RegisterPage extends AppCompatActivity implements View.OnClickListener {
     private FirebaseAuth mAuth;
 
     private EditText editRegister_email, editRegister_password, editRegister_name;
@@ -46,53 +46,53 @@ public class RegisterPage extends AppCompatActivity implements View.OnClickListe
         String password = editRegister_password.getText().toString().trim();
         String name = editRegister_name.getText().toString().trim();
 
-        if(email.isEmpty()){
+        if (email.isEmpty()) {
             editRegister_email.setError("Email is required");
             editRegister_email.requestFocus();
             return;
         }
-        if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             editRegister_email.setError("Please provide valid email!");
             editRegister_email.requestFocus();
             return;
         }
-        if(password.isEmpty()){
+        if (password.isEmpty()) {
             editRegister_password.setError("Password is required");
             editRegister_password.requestFocus();
             return;
         }
-        if(name.isEmpty()){
+        if (name.isEmpty()) {
             editRegister_name.setError("Name is required");
             editRegister_name.requestFocus();
             return;
         }
-    mAuth.createUserWithEmailAndPassword(email,password)
-            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if(task.isSuccessful()){
-                        PlayerModel playerModel = new PlayerModel(999, name, 0,  email);
-                        FirebaseDatabase.getInstance().getReference("Users")
-                                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                .setValue(playerModel).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        if(task.isSuccessful()){
-                                            Toast.makeText(RegisterPage.this,"User registered successfully",Toast.LENGTH_LONG).show();
 
+        mAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            PlayerModel playerModel = new PlayerModel("None", name, 0, email);
+                            FirebaseDatabase.getInstance().getReference("Users")
+                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                    .setValue(playerModel).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if (task.isSuccessful()) {
+                                                Toast.makeText(RegisterPage.this, "User registered successfully", Toast.LENGTH_LONG).show();
+
+                                            } else {
+                                                Toast.makeText(RegisterPage.this, "Failed to register user", Toast.LENGTH_LONG).show();
+
+                                            }
                                         }
-                                        else {
-                                            Toast.makeText(RegisterPage.this,"Failed to register user",Toast.LENGTH_LONG).show();
+                                    });
+                        } else {
+                            Toast.makeText(RegisterPage.this, "Failed to register user", Toast.LENGTH_LONG).show();
 
-                                        }
-                                    }
-                                });
-                    }else {
-                        Toast.makeText(RegisterPage.this,"Failed to register user",Toast.LENGTH_LONG).show();
-
+                        }
                     }
-                }
-            });
+                });
     }
 
 

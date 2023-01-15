@@ -1,32 +1,30 @@
 package com.example.ingame;
 
-import java.util.ArrayList;
-
 public class PlayerModel {
-    int rank;
+    String disability;
     int score;
     String email;
     String name;
 
     public PlayerModel() {
-        this.rank = 1;
+        this.disability = "None";
         this.name = "Alex";
         this.score = 0;
         this.email = "Alex@email.com";
     };
-    public PlayerModel(int rank, String name, int score, String email) {
-        this.rank = rank;
+    public PlayerModel(String disability, String name, int score, String email) {
+        this.disability = disability;
         this.name = name;
         this.score = score;
         this.email = email;
     }
 
-    public int getRank() {
-        return rank;
+    public String getDisability() {
+        return disability;
     }
 
-    public void setRank(int rank) {
-        this.rank = rank;
+    public void setDisability(String disability) {
+        this.disability = disability;
     }
 
     public String getName() {

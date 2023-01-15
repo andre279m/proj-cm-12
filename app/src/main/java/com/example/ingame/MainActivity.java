@@ -15,12 +15,16 @@ public class MainActivity extends AppCompatActivity {
     private Button buttonSetUp;
     private Button buttonLogout;
     private Button buttonPlay;
-
+    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //obtain information from the player ID
+        intent = getIntent();
+        String playerID = intent.getStringExtra("playerID");
 
         // connect buttons to their corresponding View
         buttonHighScore = findViewById(R.id.highscore);
@@ -32,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         buttonHighScore.setOnClickListener(__ -> onButtonHighScoreClicked());
         buttonSetUp.setOnClickListener(__ -> onButtonSetUpClicked());
         buttonLogout.setOnClickListener(__ -> onButtonLogoutClicked());
-        buttonPlay.setOnClickListener( __ -> startGame());}
+        buttonPlay.setOnClickListener( __ -> startGame(playerID));}
 
 
     // Methods to start new activities
@@ -53,8 +57,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intentChangeHighscoreScreen);
     }
 
-    private void startGame() {
+    private void startGame(String playerID) {
         Intent intent = new Intent(this, Simon.class);
+        intent.putExtra("playerID", playerID);
         startActivity(intent);
     }
 }

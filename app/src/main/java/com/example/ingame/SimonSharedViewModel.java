@@ -2,6 +2,7 @@ package com.example.ingame;
 
 import static com.example.ingame.Movement.randomEnum;
 
+import android.content.Intent;
 import android.util.Log;
 
 import androidx.lifecycle.LiveData;
@@ -73,21 +74,35 @@ public class SimonSharedViewModel extends ViewModel {
 
         Log.d("simon_game", String.format("Starting game with question [%s]", first.getQuote()));
 
-        // change state to answering, notify activity
-        Round round = new Round(currentRound, State.ANSWERING, first);
-        _state.postValue(round);
 
-        // start answer timer
+        ////
+        // change state to downtime until next round
+        _state.postValue(new Round(currentRound, State.DOWNTIME, currentQuestion));
+        Log.d("simon_game", "Delaying next round..");
+
+        // start downtime timer
         timer = new Timer("simon_says");
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                // TODO this should end the game, user took too long
-                Log.d("simon_game", "Answer timeout");
+                // change state to answering, notify activity
+                Round round = new Round(currentRound, State.ANSWERING, first);
+                _state.postValue(round);
 
-                _state.postValue(new Round(currentRound, State.GAME_OVER, first));
+                // start answer timer
+                timer = new Timer("simon_says");
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        // TODO this should end the game, user took too long
+                        Log.d("simon_game", "Answer timeout");
+
+                        _state.postValue(new Round(currentRound, State.GAME_OVER, first));
+
+                    }
+                }, ANSWER_TIMEOUT);
             }
-        }, ANSWER_TIMEOUT);
+        }, DOWN_TIME);
     }
 
     public void answer(Movement movement) {
@@ -181,14 +196,14 @@ enum State {
 }
 
 enum Movement {
-    UP, DOWN, LEFT, RIGHT;
+    UP, PUSH, LEFT, RIGHT;
 
     Movement opposite() {
-        if (this == Movement.UP) {
+        /* if (this == Movement.UP) {
             return DOWN;
         } else if (this == Movement.DOWN) {
             return UP;
-        } else if (this == Movement.LEFT) {
+        } else */ if (this == Movement.LEFT) {
             return RIGHT;
         } else {
             return LEFT;

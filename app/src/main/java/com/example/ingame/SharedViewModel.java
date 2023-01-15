@@ -42,13 +42,20 @@ public class SharedViewModel extends ViewModel {
     }
 
     public void addScore(int score){
+        Log.v("UpdatePlayer","" + getPlayer() );
+
         PlayerModel player = getPlayer().getValue();
+        Log.v("UpdatePlayer","" + player.getScore() );
+
         player.setScore(score);
+        Log.v("UpdatePlayer","" + player );
+
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Users");
-        databaseReference.equalTo(player.email).addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseReference.equalTo(player.getEmail()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot playerSnapshot: snapshot.getChildren()){
+                    Log.v("UpdatePlayer","" + player + " " + playerSnapshot);
                     playerSnapshot.getRef().child("score").setValue(score);
                 }
             }

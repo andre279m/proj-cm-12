@@ -12,15 +12,18 @@ import android.widget.TextView;
 public class Simon extends AppCompatActivity {
 
     private AccelerometorSensor accelerometorSensor;
-    float [] history = new float[2];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_simon);
+
+        Intent intent = getIntent();
+        String playerID = intent.getStringExtra("playerID");
+        // start accelerometer sensor
         accelerometorSensor = new AccelerometorSensor(this);
 
-
+        // Obtain and start game logic
         SimonSharedViewModel model = new ViewModelProvider(this).get(SimonSharedViewModel.class);
         model.simonAsk(5);
 
@@ -28,59 +31,48 @@ public class Simon extends AppCompatActivity {
 
         model.getState().observe(this, round -> {
             if (round == null || round.getNumber() < 0) return;
-            if (round.getState().name() == "ANSWERING") {
+            if (round.getState() == State.ANSWERING) {
                 question.setText(round.getQuestion().getQuote());
             } else {
                 question.setText("Get Ready...");
             }
 
             Log.d("SimonActivity", String.format("[%d] Observed state change to [%s]. Question: [%s]", round.getNumber(), round.getState().name(), round.getQuestion().getQuote()));
-            if (round.getState().name() == "WIN" || round.getState().name() == "GAME_OVER"){
-                Intent intent = new Intent(this, GameEnd.class);
-                intent.putExtra("State", round.getState().name());
-                intent.putExtra("Score",round.getNumber().toString());
-                startActivity(intent);
+            if (round.getState() == State.WIN || round.getState() == State.GAME_OVER) {
+                Log.d("SimonActivity", "Game of player " + playerID + " over due to " + round.getState());
+
+                Intent intentGameEnd = new Intent(this, GameEnd.class);
+                intentGameEnd.putExtra("State", round.getState().name());
+                intentGameEnd.putExtra("Score", round.getNumber());
+                intentGameEnd.putExtra("playerID", playerID);
+                startActivity(intentGameEnd);
                 finish();
             }
 
 
         });
 
-
+        // definition of the movements and connecting each to their answer
         accelerometorSensor = new AccelerometorSensor(this);
         accelerometorSensor.setListener((tx, ty, tz) -> {
-            //Log.v("accel" , "right " + tx );
-            float xChange = history[0] - tx;
-            float yChange = history[1] - ty;
-            history[0] = tx;
-            history[1] = ty;
+            //Log.v("accelerometer", "x " + tx + " y " + ty + " z " + tz);
 
-            if (xChange > 4){
-                Log.v("accel" , "right " + xChange );
+            if (tx > 2) {
+                Log.v("accelerometer", "right " + tx);
                 model.answer(Movement.RIGHT);
-                history = new float[2];
-
+            } else if (tx < -2) {
+                Log.v("accelerometer", "left " + tx);
+                model.answer(Movement.LEFT);
             }
-            else if (xChange < -4){
-                Log.v("accel" , "left " + xChange );
-                model.answer(Movement.LEFT);}
-            history = new float[2];
 
-
-            if (yChange > 4){
-                Log.v("accel" , "up " + yChange );
+            if (ty > 2) {
+                Log.v("accelerometer", "up " + ty);
                 model.answer(Movement.UP);
-                history = new float[2];
-
-            }
-            else if (yChange < -2){
-                Log.v("accel" , "down " + yChange );
-                model.answer(Movement.DOWN);
-                history = new float[2];
-
+            } else if (tz > 2 && (tx > -2 && tx < 2) && ty > -2) {
+                Log.v("accelerometer", "push " + tz);
+                model.answer(Movement.PUSH);
             }
         });
-
 
         Button blue = findViewById(R.id.blue);
         Button green = findViewById(R.id.green);
@@ -89,9 +81,10 @@ public class Simon extends AppCompatActivity {
 
         blue.setOnClickListener(__ -> model.answer(Movement.RIGHT));
         green.setOnClickListener(__ -> model.answer(Movement.LEFT));
-        red.setOnClickListener(__ -> model.answer(Movement.DOWN));
+        red.setOnClickListener(__ -> model.answer(Movement.PUSH));
         yellow.setOnClickListener(__ -> model.answer(Movement.UP));
     }
+
     @Override
     public void onResume() {
         super.onResume();

@@ -17,6 +17,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class HighScoreActivity extends AppCompatActivity {
@@ -53,6 +54,9 @@ public class HighScoreActivity extends AppCompatActivity {
                     list.add(player);
 
                 }
+                Collections.sort(
+                        list,
+                        (player1, player2) -> player2.getScore() - player1.getScore());
                 playerAdapter = new PlayerAdapter(HighScoreActivity.this,list);
                 recyclerView.setAdapter(playerAdapter);
                 playerAdapter.notifyDataSetChanged();
