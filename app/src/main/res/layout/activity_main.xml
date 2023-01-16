@@ -8,46 +8,43 @@
 
     <Button
         android:id="@+id/highscore"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="429dp"
+        android:layout_height="155dp"
         android:text="highscore"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.444"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.71" />
+
+    <Button
+        android:id="@+id/setup"
+        android:layout_width="206dp"
+        android:layout_height="216dp"
+        android:layout_marginTop="208dp"
+        android:text="Set Up"
+        app:layout_constraintEnd_toEndOf="@+id/logout"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/setup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Set Up"
-        app:layout_constraintBottom_toTopOf="@+id/highscore"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.622" />
-
-    <Button
         android:id="@+id/play"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="429dp"
+        android:layout_height="185dp"
         android:text="Let's Play"
-        app:layout_constraintBottom_toTopOf="@+id/highscore"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.508"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.88" />
+        tools:layout_editor_absoluteX="-8dp"
+        tools:layout_editor_absoluteY="552dp" />
 
     <Button
         android:id="@+id/logout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="432dp"
+        android:layout_width="206dp"
+        android:layout_height="216dp"
+        android:layout_marginTop="208dp"
         android:text="Logout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.509"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

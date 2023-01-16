@@ -36,7 +36,8 @@ public class MainActivity extends AppCompatActivity {
         buttonHighScore.setOnClickListener(__ -> onButtonHighScoreClicked());
         buttonSetUp.setOnClickListener(__ -> onButtonSetUpClicked(playerID));
         buttonLogout.setOnClickListener(__ -> onButtonLogoutClicked());
-        buttonPlay.setOnClickListener( __ -> startGame(playerID));}
+        buttonPlay.setOnClickListener( __ -> startGame(playerID));
+    }
 
 
     // Methods to start new activities
