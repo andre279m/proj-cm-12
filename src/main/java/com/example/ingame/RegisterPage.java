@@ -72,7 +72,7 @@ public class RegisterPage extends AppCompatActivity implements View.OnClickListe
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            PlayerModel playerModel = new PlayerModel("None", name, 0, email);
+                            PlayerModel playerModel = new PlayerModel("None", name, 0,0,0, email);
                             FirebaseDatabase.getInstance().getReference("Users")
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                     .setValue(playerModel).addOnCompleteListener(new OnCompleteListener<Void>() {

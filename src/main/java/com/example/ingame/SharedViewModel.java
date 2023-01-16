@@ -45,9 +45,9 @@ public class SharedViewModel extends ViewModel {
         Log.v("UpdatePlayer","" + getPlayer() );
 
         PlayerModel player = getPlayer().getValue();
-        Log.v("UpdatePlayer","" + player.getScore() );
+        Log.v("UpdatePlayer","" + player.getScoreSimon() );
 
-        player.setScore(score);
+        player.setScoreSimon(score);
         Log.v("UpdatePlayer","" + player );
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Users");
@@ -56,7 +56,7 @@ public class SharedViewModel extends ViewModel {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot playerSnapshot: snapshot.getChildren()){
                     Log.v("UpdatePlayer","" + player + " " + playerSnapshot);
-                    playerSnapshot.getRef().child("score").setValue(score);
+                    playerSnapshot.getRef().child("scoreSimon").setValue(score);
                 }
             }
 

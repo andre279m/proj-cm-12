@@ -38,9 +38,10 @@ public class SetUpActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 PlayerModel playerModel = snapshot.getValue(PlayerModel.class);
                 Log.v("HighScore", "Highscore updated" + playerModel);
+                int sumScore = playerModel.getScoreSimon() + playerModel.getScorePuzzle() + playerModel.getScoreQuiz();
                 nameView.setText(playerModel.getName());
                 disabilityView.setText(playerModel.getDisability());
-                scoreView.setText(""+playerModel.getScore());
+                scoreView.setText(""+ sumScore);
 
             }
 
