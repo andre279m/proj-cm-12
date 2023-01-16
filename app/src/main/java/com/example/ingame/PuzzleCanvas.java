@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Build;
 import android.os.VibrationEffect;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -18,7 +19,7 @@ public class PuzzleCanvas extends View implements View.OnTouchListener{
 
     private Vibrator v;
 
-    //private Path path = new Path();´
+    private final String TAG = PuzzleCanvas.class.getSimpleName();
 
     private float distance;
 
@@ -43,33 +44,31 @@ public class PuzzleCanvas extends View implements View.OnTouchListener{
         float eventY = event.getY();
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                //path.moveTo(eventX, eventY);// updates the path initial point
                 distance = calculateDistanceBetweenPointsWithHypot(eventX,eventY,goal[0],goal[1]);
-                long[] ts = {1000}; //TODO verificar tempo
-                int a = (int) (-2200 * distance + 255);
-                int[] as = {a};//TODO verificar como aplicar amplitude
+                long[] ts = {10};
+                int a = (int) (-(distance/10) + 255);//TODO ajustes a sensibilidade
+                int[] as = {a};
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     v.vibrate(VibrationEffect.createWaveform(ts,as, -1));
                 }
-                if (distance < 10) {
+                if (distance < 100) {
                     Toast.makeText(this.getContext(), "correct", Toast.LENGTH_SHORT).show();
                 }
                 return true;
             case MotionEvent.ACTION_MOVE:
                 distance = calculateDistanceBetweenPointsWithHypot(eventX,eventY,goal[0],goal[1]);
-                ts = new long[]{1000}; //TODO verificar tempo
-                a = (int) (-2200 * distance + 255);
-                as = new int[]{a};//TODO verificar como aplicar amplitude
+                ts = new long[]{10};
+                a = (int) (-(distance/10) + 255);//TODO ajustes a sensibilidade
+                //Log.d(TAG, String.valueOf(distance) + " ola " + String.valueOf(a));
+                as = new int[]{a};
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     v.vibrate(VibrationEffect.createWaveform(ts,as, -1));
                 }
-                if (distance < 10){
+                if (distance < 100){
                     Toast.makeText(this.getContext(), "correct", Toast.LENGTH_SHORT).show();
                 }
-                //path.lineTo(eventX, eventY);// makes a line to the point each time this event is fired
                 break;
             case MotionEvent.ACTION_UP:// when you lift your finger
-
                 break;
             default:
                 return false;

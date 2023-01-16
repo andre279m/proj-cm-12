@@ -11,10 +11,4 @@ public class GestureListener extends GestureDetector.SimpleOnGestureListener imp
         this.canvas = canvas;
     }
 
-    ////////SimpleOnGestureListener
-    /**@Override
-    public void onLongPress(MotionEvent motionEvent) {
-        canvas.changeBackground();
-    }**/
-
 }
