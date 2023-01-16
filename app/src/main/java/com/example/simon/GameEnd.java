@@ -8,6 +8,8 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.ingame.R;
+
 public class GameEnd extends AppCompatActivity {
     private AccelerometorSensor accelerometorSensor;
 
