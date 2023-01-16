@@ -27,7 +27,7 @@ import java.util.UUID;
 public class AuthenticationPage extends AppCompatActivity {
     private FirebaseAuth mAuth;
 
-    TextView register;
+    TextView register, forgotPassword;
     EditText editLoginEmail, editLoginPassword;
 
     //private SharedViewModel sharedViewModel;
@@ -49,8 +49,16 @@ public class AuthenticationPage extends AppCompatActivity {
 
         Button signInButton = findViewById(R.id.login);
         signInButton.setOnClickListener(__ -> authUser());
+
+        forgotPassword = findViewById(R.id.forgotpassword);
+        forgotPassword.setOnClickListener(__ -> forgotPassword());
+
     }
 
+    private void forgotPassword() {
+        Intent intentChangeForgotPasswordPage = new Intent(this, ForgotPassword.class);
+        startActivity(intentChangeForgotPasswordPage);
+    }
 
 
     private void authUser() {
