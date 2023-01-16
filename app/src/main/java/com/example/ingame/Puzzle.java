@@ -1,6 +1,7 @@
 package com.example.ingame;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -12,17 +13,15 @@ public class Puzzle extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_puzzle);// adds the created view to the screen
 
-        Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        PuzzleFragment pf = new PuzzleFragment();
 
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.puzzleFrag, pf);
 
-        GestureListener mGestureListener = new GestureListener();
-        GestureDetector mGestureDetector = new GestureDetector(getApplicationContext(), mGestureListener);
-        mGestureDetector.setIsLongpressEnabled(true);
-
-        PuzzleCanvas puzzleCanvas = new PuzzleCanvas(getApplicationContext(), null, mGestureDetector, v);
-        mGestureListener.setCanvas(puzzleCanvas);
-
-        setContentView(puzzleCanvas);// adds the created view to the screen
+        transaction.addToBackStack(null);
+        // Commit the transaction
+        transaction.commit();
     }
 }

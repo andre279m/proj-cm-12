@@ -23,7 +23,7 @@ public class PuzzleCanvas extends View implements View.OnTouchListener{
 
     private float distance;
 
-    private float[] goal = {200.0f,300.0f};
+    private float[] goal = {200.0f,300.0f};//TODO maybe mudar consoante o tamanho do ecra
 
     public PuzzleCanvas(Context context, @Nullable AttributeSet attrs, GestureDetector mGestureDetector, Vibrator v) {
         super(context, attrs);
@@ -59,7 +59,7 @@ public class PuzzleCanvas extends View implements View.OnTouchListener{
                 distance = calculateDistanceBetweenPointsWithHypot(eventX,eventY,goal[0],goal[1]);
                 ts = new long[]{10};
                 a = (int) (-(distance/10) + 255);//TODO ajustes a sensibilidade
-                //Log.d(TAG, String.valueOf(distance) + " ola " + String.valueOf(a));
+                Log.d(TAG, String.valueOf(distance) + " ola " + String.valueOf(a));
                 as = new int[]{a};
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     v.vibrate(VibrationEffect.createWaveform(ts,as, -1));
