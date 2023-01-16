@@ -31,16 +31,40 @@ public class SharedViewModel extends ViewModel {
                 PlayerModel playerModel = snapshot.getValue(PlayerModel.class);
                 Log.v("dto",""+playerModel);
                 _playerModel.setValue(playerModel);
-
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
         });
 
         //_playerModel.setValue(playerModel);
+    }
+
+    public void addScore(int score){
+        Log.v("UpdatePlayer","" + getPlayer() );
+
+        PlayerModel player = getPlayer().getValue();
+        Log.v("UpdatePlayer","" + player.getScore() );
+
+        player.setScore(score);
+        Log.v("UpdatePlayer","" + player );
+
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Users");
+        databaseReference.equalTo(player.getEmail()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot playerSnapshot: snapshot.getChildren()){
+                    Log.v("UpdatePlayer","" + player + " " + playerSnapshot);
+                    playerSnapshot.getRef().child("score").setValue(score);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+
     }
 
 }

@@ -22,13 +22,15 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.UUID;
+
 public class AuthenticationPage extends AppCompatActivity {
     private FirebaseAuth mAuth;
 
-    TextView register;
+    TextView register, forgotPassword;
     EditText editLoginEmail, editLoginPassword;
 
-    private SharedViewModel sharedViewModel;
+    //private SharedViewModel sharedViewModel;
 
 
     @Override
@@ -36,7 +38,7 @@ public class AuthenticationPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_authentication_page);
         mAuth = FirebaseAuth.getInstance();
-        sharedViewModel = new ViewModelProvider(this).get(SharedViewModel.class);
+        //sharedViewModel = new ViewModelProvider(this).get(SharedViewModel.class);
 
         editLoginEmail = findViewById(R.id.login_email);
         editLoginPassword = findViewById(R.id.login_password);
@@ -47,8 +49,16 @@ public class AuthenticationPage extends AppCompatActivity {
 
         Button signInButton = findViewById(R.id.login);
         signInButton.setOnClickListener(__ -> authUser());
+
+        forgotPassword = findViewById(R.id.forgotpassword);
+        forgotPassword.setOnClickListener(__ -> forgotPassword());
+
     }
 
+    private void forgotPassword() {
+        Intent intentChangeForgotPasswordPage = new Intent(this, ForgotPassword.class);
+        startActivity(intentChangeForgotPasswordPage);
+    }
 
 
     private void authUser() {
@@ -77,8 +87,8 @@ public class AuthenticationPage extends AppCompatActivity {
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 String userID = user.getUid();
                 if(user.isEmailVerified()){
-                    sharedViewModel.addPlayer(userID);
-                    mainPage();
+                    //sharedViewModel.addPlayer(userID);
+                    mainPage(userID);
 
                 }
                 else {
@@ -100,8 +110,9 @@ public class AuthenticationPage extends AppCompatActivity {
 
     }
 
-    private void mainPage() {
+    private void mainPage(String playerUUid) {
         Intent intentChangeMainPage = new Intent(this, MainActivity.class);
+        intentChangeMainPage.putExtra("playerID", playerUUid);
         startActivity(intentChangeMainPage);
         finish();
 

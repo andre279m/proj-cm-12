@@ -132,7 +132,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="1dp"
-
                         android:layout_weight="1"
                         android:fontFamily="sans-serif-medium"
                         android:text="15"
@@ -148,20 +147,55 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 >
+
                 <Button
-                    android:id="@+id/button"
+                    android:id="@+id/none"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@color/soft_gray"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="27dp"
+                    android:layout_marginEnd="21dp"
+                    android:layout_toStartOf="@+id/button"
                     android:layout_weight="1"
+                    android:backgroundTint="@color/soft_gray"
                     android:fontFamily="sans-serif-medium"
-                    android:text="EDIT"
+                    android:text="None"
                     android:textAlignment="center"
                     android:textColor="@color/white"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/deaf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    />
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/soft_gray"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="Deaf"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/blind"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="255dp"
+                    android:layout_marginEnd="-207dp"
+                    android:layout_toStartOf="@+id/button"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/soft_gray"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="Blind"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
             </RelativeLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>

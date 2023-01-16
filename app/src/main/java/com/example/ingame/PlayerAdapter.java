@@ -34,7 +34,6 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerView
     public void onBindViewHolder(@NonNull PlayerViewHolder holder, int position) {
         PlayerModel player = list.get(position);
         holder.name.setText(player.getName());
-        holder.rank.setText(Integer.toString(player.getRank()));
         holder.score.setText(Integer.toString(player.getScore()));
     }
 
@@ -45,11 +44,10 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerView
 
     public static class PlayerViewHolder extends RecyclerView.ViewHolder{
 
-        TextView rank,name,score;
+        TextView name,score;
 
         public PlayerViewHolder(@NonNull View itemView) {
             super(itemView);
-            rank = itemView.findViewById(R.id.rank);
             name = itemView.findViewById(R.id.name);
             score = itemView.findViewById(R.id.score);
 
