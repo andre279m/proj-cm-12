@@ -64,6 +64,8 @@ public class SetUpActivity extends AppCompatActivity {
     private void setDisabilityNone(String playerID, String disability) {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Users");
         databaseReference.child(playerID).child("disability").setValue(disability);
+        TextView disabilityView = findViewById(R.id.rank2);
+        disabilityView.setText(disability);
     }
 }
 
