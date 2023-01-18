@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ChooseGame">
+
+    <TextView
+        android:id="@+id/TextChoose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_centerHorizontal="true"
+        android:text="Choose Game"
+        android:textColor="@color/black"
+        android:textSize="34sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/bsimon"
+        android:layout_width="fill_parent"
+        android:layout_height="210dp"
+        android:layout_below="@id/TextChoose"
+        android:layout_above="@id/bpuzzle"
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="@color/pallette_1_blue"
+        android:text="Simon"
+        android:textColor="@color/black"
+        android:textSize="40sp" />
+
+    <Button
+        android:id="@+id/bpuzzle"
+        android:layout_width="fill_parent"
+        android:layout_height="210dp"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@color/pallette_3_green"
+        android:text="Puzzle"
+        android:textColor="@color/black"
+        android:textSize="40sp" />
+
+    <Button
+        android:id="@+id/btrivia"
+        android:layout_width="fill_parent"
+        android:layout_height="210dp"
+        android:layout_below="@id/bpuzzle"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="0dp"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@color/pallette_4_orange"
+        android:text="Trivia"
+        android:textColor="@color/black"
+        android:textSize="40sp" />
+
+</RelativeLayout>
