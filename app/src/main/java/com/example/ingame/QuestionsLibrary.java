@@ -2,11 +2,13 @@ package com.example.ingame;
 
 public class QuestionsLibrary {
 
-    private String mQuestions [] = {
+            /*
             "Which part of the plant holds it in the soil?",
             "This part of the plant absorbs energy from the sun.",
             "This part of the plant attracts bees, butterflies and hummingbirds.",
             "The _______ holds the plant upright.",
+            */
+    private String mQuestions [] = {
             "O mercado Rosa Agulhas pertence a que freguesia da cidade de Lisboa?",
             "As \"arrufadas\" são um doce tradicional de onde?",
             "Uma das músicas de Amália Rodrigues chama-se \"vou dar de beber ___\"",
@@ -59,14 +61,14 @@ public class QuestionsLibrary {
             "Em que ano o Homem pisou a Lua pela primeira vez? ",
             "Que atleta conseguiu mais medalhas de ouro nos Jogos Olímpicos? ",
             "Que artista pintou o teto da Capela Sistina, no Vaticano?",
-
     };
-
-    private String mChoices [][] = {
+            /*
             {"Roots", "Stem", "Flower"},
             {"Fruit", "Leaves", "Seeds"},
             {"Bark", "Flower", "Roots"},
             {"Flower", "Leaves", "Stem"},
+            */
+    private String mChoices [][] = {
             {"Telheiras", "Alcântara", "Marvila", "Ajuda"},
             {"Lisboa", "Porto", "Coimbra", "Viseu"},
             {"à solidão", "à saudade", "à música", "à dor"},
@@ -121,8 +123,8 @@ public class QuestionsLibrary {
             {"Miguel Ângelo", "Leonardo da Vinci", "Sandro Boticelli", "Rafael Sanzio"}
     };
 
-    private String mCorrectAnswers[] = {"Roots", "Leaves", "Flower", "Stem",
-
+    /*"Roots", "Leaves", "Flower", "Stem",*/
+    private String mCorrectAnswers[] = {
             "Alcântara", "Coimbra", "à dor", "1986", "Vila de Rei",
             "Descobrem-se as verdades", "2015", "Vacina", "Lucinda", "Braga",
             "4", "3", "Portalegre",
