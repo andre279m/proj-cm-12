@@ -34,7 +34,7 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerView
     public void onBindViewHolder(@NonNull PlayerViewHolder holder, int position) {
         PlayerModel player = list.get(position);
         holder.name.setText(player.getName());
-        holder.score.setText(Integer.toString(player.getScore()));
+        holder.score.setText(Integer.toString(player.getScoreSimon()));
     }
 
     @Override

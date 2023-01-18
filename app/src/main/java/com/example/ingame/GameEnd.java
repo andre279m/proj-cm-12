@@ -65,13 +65,13 @@ public class GameEnd extends AppCompatActivity {
                 PlayerModel playerModel = snapshot.getValue(PlayerModel.class);
                 Log.v("HighScore", "Highscore updated" + playerModel);
 
-                int currentScore = playerModel.getScore();
-                if (playerModel.getScore() < score){
-                    databaseReference.child(playerID).child("score").setValue(score);
+                int currentScore = playerModel.getScoreSimon();
+                if (playerModel.getScoreSimon() < score){
+                    databaseReference.child(playerID).child("scoreSimon").setValue(score);
                     Log.v("HighScore", "Highscore updated");
                 }
                 else {
-                    databaseReference.child(playerID).child("score").setValue(playerModel.getScore());
+                    databaseReference.child(playerID).child("scoreSimon").setValue(playerModel.getScoreSimon());
                     Log.v("HighScore", "Highscore updated");
                 }
             }
