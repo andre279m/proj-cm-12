@@ -8,7 +8,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:cardCornerRadius="50dp"
+        app:cardCornerRadius="30dp"
         android:padding="10dp"
         tools:context=".CustomListView"
         >
@@ -17,10 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:orientation="horizontal"
-            android:background="@color/orange"
-            >
-
-
+            android:background="@color/pallette_4_orange" >
 
             <TextView
                 android:id="@+id/name"
@@ -37,10 +34,8 @@
                 android:textColor="@color/black"
                 android:textSize="25sp"
                 android:textStyle="bold"
-                android:fontFamily="sans-serif-medium"
+                android:fontFamily="sans-serif-medium" />
 
-
-                />
             <TextView
                 android:id="@+id/score"
                 android:layout_width="wrap_content"
@@ -53,11 +48,7 @@
                 android:textColor="@color/black"
                 android:textSize="25sp"
                 android:textStyle="bold"
-                android:fontFamily="sans-serif-medium"
-
-                />
-
+                android:fontFamily="sans-serif-medium" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
-

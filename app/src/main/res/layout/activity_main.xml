@@ -6,81 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/highscore"
-        android:layout_width="match_parent"
-        android:layout_height="500px"
-        android:layout_below="@id/setup"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="-12dp"
-        android:backgroundTint="@color/pallette_4_orange"
-        android:text="highscore"
-        android:textColor="@color/black"
-        android:textSize="34sp"
-        android:textStyle="bold" />
-
-    <Button
-        android:id="@+id/setup"
-        android:layout_width="540px"
-        android:layout_height="177dp"
-        android:layout_below="@id/textView2"
-        android:layout_alignParentStart="true"
-        android:backgroundTint="@color/pallette_1_blue"
-        android:text="Set Up"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:iconTint="@color/pallette_1_blue"
-        app:layout_constraintBottom_toTopOf="@+id/highscore"
-        app:layout_constraintEnd_toStartOf="@+id/logout"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:rippleColor="@color/pallette_1_blue" />
-
-    <Button
-        android:id="@+id/logout"
-        android:layout_width="540px"
-        android:layout_height="177dp"
-        android:layout_below="@id/textView2"
-        android:layout_alignParentEnd="true"
-        android:layout_toRightOf="@id/setup"
-        android:backgroundTint="@color/pallette_3_green"
-        android:text="Logout"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/highscore"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
-    <Button
-        android:id="@+id/play"
-        android:layout_width="match_parent"
-        android:layout_height="500px"
-        android:layout_below="@id/highscore"
-        android:layout_marginTop="-12dp"
-        android:backgroundTint="@color/pallette_5_purple"
-        android:text="Let's Play"
-        android:textColor="@color/black"
-        android:textSize="34sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/highscore" />
-
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="135dp"
         android:layout_height="124dp"
         android:layout_marginTop="5dp"
-        android:backgroundTint="@color/pallette_4_orange"
-        app:layout_constraintBottom_toBottomOf="@+id/play"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
         android:layout_centerHorizontal="true"
+        android:backgroundTint="@color/pallette_4_orange"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/icon_ingame_final" />
 
     <TextView
@@ -97,5 +30,94 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView"
         android:layout_below="@id/imageView"
-        android:layout_centerHorizontal="true"        />
+        android:layout_centerHorizontal="true" />
+
+    <View android:id="@+id/strut"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_centerHorizontal="true"/>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="fill_parent"
+        android:layout_height="180dp"
+        android:layout_below="@id/textView2"
+        android:layout_alignRight="@id/strut"
+        android:elevation="5dp"
+        app:cardMaxElevation="5dp"
+        app:cardCornerRadius="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+
+        <Button
+            android:id="@+id/setup"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_below="@id/textView2"
+            android:layout_alignRight="@id/strut"
+            android:layout_alignParentStart="true"
+            android:backgroundTint="@color/pallette_1_blue"
+            android:text="Set Up"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:iconTint="@color/pallette_1_blue"
+            app:rippleColor="@color/pallette_1_blue" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView2"
+        android:layout_width="fill_parent"
+        android:layout_height="180dp"
+        android:layout_below="@id/textView2"
+        android:layout_alignLeft="@id/strut"
+        app:cardCornerRadius="0dp"
+        >
+
+        <Button
+            android:id="@+id/logout"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_below="@id/textView2"
+            android:layout_alignParentEnd="true"
+            android:shape="rectangle"
+            android:layout_toRightOf="@id/setup"
+            android:backgroundTint="@color/pallette_3_green"
+            android:text="Logout"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+    </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/play"
+        android:layout_width="match_parent"
+        android:layout_height="198dp"
+        android:layout_below="@id/cardView"
+        android:layout_marginTop="-12dp"
+        android:backgroundTint="@color/pallette_4_orange"
+        android:text="Let's Play"
+        android:textColor="@color/black"
+        android:textSize="34sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/highscore"
+        android:layout_width="match_parent"
+        android:layout_height="198dp"
+        android:layout_below="@id/play"
+        android:layout_marginTop="-12dp"
+        android:layout_marginBottom="-12dp"
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="@color/pallette_5_purple"
+        android:text="highscore"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+
 </RelativeLayout>
