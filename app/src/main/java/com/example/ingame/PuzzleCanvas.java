@@ -1,35 +1,79 @@
 package com.example.ingame;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Build;
 import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
-import android.os.Vibrator;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
+import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
+
+@SuppressLint("ViewConstructor")
 public class PuzzleCanvas extends View implements View.OnTouchListener{
 
-    private GestureDetector mGestureDetector;
+    private final PuzzleFragment pf;
+    private int mScore = 0;
+    private int mPuzzleNumber = 0;
 
-    private Vibrator v;
+    private int currentRound = 0;
+    private Timer timer = new Timer("puzzle");
+
+    private final TextView mScoreView;
+
+    private final String playerID;
+
+    private final GestureDetector mGestureDetector;
+
+    private final Vibrator v;
+
+    private final TimerTask tt = new TimerTask() {
+        final int seconds = 15;
+        int i = 0;
+
+        public void run() {
+            i++;
+            if (i % seconds == 0){
+                timer.cancel();
+                timer.purge();
+
+                pf.requireActivity().runOnUiThread(() -> Toast.makeText(pf.getActivity(), "Timed out", Toast.LENGTH_SHORT).show());
+                try {
+                    updatePuzzle();
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            else
+                System.out.println("Time left:" + (seconds - (i % seconds))); //TODO atualizar tempo no ecra?
+        }
+    };
 
     private final String TAG = PuzzleCanvas.class.getSimpleName();
 
-    private float distance;
+    private final float[][] goal = {{0.3f,0.3f},{}};//TODO adicionar mais posiçoes
 
-    private float[] goal = {200.0f,300.0f};//TODO maybe mudar consoante o tamanho do ecra
-
-    public PuzzleCanvas(Context context, @Nullable AttributeSet attrs, GestureDetector mGestureDetector, Vibrator v) {
+    public PuzzleCanvas(Context context, @Nullable AttributeSet attrs, GestureDetector mGestureDetector, Vibrator v, TextView mScoreView, String playerID, PuzzleFragment pf) {
         super(context, attrs);
         this.mGestureDetector = mGestureDetector;
         setOnTouchListener(this);
         this.v = v;
+        this.mScoreView = mScoreView;
+        this.playerID = playerID;
+        this.pf = pf;
+        timer.schedule(tt, 0, 1000);
     }
 
     @Override
@@ -38,34 +82,52 @@ public class PuzzleCanvas extends View implements View.OnTouchListener{
         return false;
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         float eventX = event.getX();
         float eventY = event.getY();
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                distance = calculateDistanceBetweenPointsWithHypot(eventX,eventY,goal[0],goal[1]);
+                float distance = calculateDistanceBetweenPointsWithHypot(eventX, eventY, goal[mPuzzleNumber][0]*getScreenWidth(), goal[mPuzzleNumber][1]*getScreenHeight());
                 long[] ts = {10};
-                int a = (int) (-(distance/10) + 255);//TODO ajustes a sensibilidade
+                int a = (int) (-(distance /5) + 255);//TODO ajustes a sensibilidade
+                if (a < 0)
+                    a=0;
                 int[] as = {a};
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     v.vibrate(VibrationEffect.createWaveform(ts,as, -1));
                 }
-                if (distance < 100) {
-                    Toast.makeText(this.getContext(), "correct", Toast.LENGTH_SHORT).show();
+                if (distance < 50) {
+                    Toast.makeText(pf.getActivity(), "Found it!", Toast.LENGTH_SHORT).show();
+                    mScore+=1;
+                    updateScore();
+                    try {
+                        updatePuzzle();
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
                 return true;
             case MotionEvent.ACTION_MOVE:
-                distance = calculateDistanceBetweenPointsWithHypot(eventX,eventY,goal[0],goal[1]);
+                distance = calculateDistanceBetweenPointsWithHypot(eventX,eventY,goal[mPuzzleNumber][0],goal[mPuzzleNumber][1]);
                 ts = new long[]{10};
-                a = (int) (-(distance/10) + 255);//TODO ajustes a sensibilidade
-                Log.d(TAG, String.valueOf(distance) + " ola " + String.valueOf(a));
+                a = (int) (-(distance /5) + 255);//TODO ajustes a sensibilidade
+                if (a < 0)
+                    a=0;
+                Log.d(TAG, distance + " ola " + a);
                 as = new int[]{a};
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     v.vibrate(VibrationEffect.createWaveform(ts,as, -1));
                 }
-                if (distance < 100){
-                    Toast.makeText(this.getContext(), "correct", Toast.LENGTH_SHORT).show();
+                if (distance < 50){
+                    Toast.makeText(pf.getActivity(), "Found it!", Toast.LENGTH_SHORT).show();
+                    updateScore();
+                    try {
+                        updatePuzzle();
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
                 break;
             case MotionEvent.ACTION_UP:// when you lift your finger
@@ -90,4 +152,45 @@ public class PuzzleCanvas extends View implements View.OnTouchListener{
 
         return (float) Math.hypot(ac, cb);
     }
+
+
+    private void updatePuzzle() throws InterruptedException {
+        Random r = new Random();
+        mPuzzleNumber = r.nextInt(goal.length);
+        timer.cancel();
+        timer.purge();
+        Thread.sleep(1000);
+        timer = new Timer();
+        timer.schedule(tt, 0, 1000);
+        currentRound++;
+        int rounds = 5;
+        if (currentRound >= rounds) {
+            timer.cancel();
+            timer.purge();
+            Intent intentGameEnd = new Intent(getContext(), GameEnd.class);
+            intentGameEnd.putExtra("State", "Game finished!");
+            intentGameEnd.putExtra("Score", mScore);//TODO mudar para algo com tempo
+            intentGameEnd.putExtra("playerID", playerID);
+            pf.requireActivity().startActivity(intentGameEnd);
+            pf.requireActivity().finish();
+        }
+    }
+
+
+    @SuppressLint("SetTextI18n")
+    private void updateScore() {
+        mScoreView.setText("" + mScore);
+    }
+
+    public static int getScreenWidth() {
+        return Resources.getSystem().getDisplayMetrics().widthPixels;
+    }
+
+    public static int getScreenHeight() {
+        return Resources.getSystem().getDisplayMetrics().heightPixels;
+    }
+
 }
+
+
+

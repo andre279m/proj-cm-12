@@ -2,18 +2,17 @@ package com.example.ingame;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.hardware.SensorManager;
+import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.os.Vibrator;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import androidx.fragment.app.Fragment;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -21,26 +20,30 @@ import android.view.ViewGroup;
  */
 public class PuzzleFragment extends Fragment {
 
-    private PuzzleCanvas puzzleCanvas;
-
     @SuppressLint("ResourceType")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         GestureListener mGestureListener = new GestureListener();
-        GestureDetector mGestureDetector = new GestureDetector(getActivity().getApplicationContext(), mGestureListener);
+        GestureDetector mGestureDetector = new GestureDetector(requireActivity().getApplicationContext(), mGestureListener);
         mGestureDetector.setIsLongpressEnabled(true);
 
-        Vibrator v = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
+        Intent intent = requireActivity().getIntent();
+        String playerID = intent.getStringExtra("playerID");
 
-        PuzzleCanvas puzzleCanvas = new PuzzleCanvas(getActivity().getApplicationContext(), null, mGestureDetector,v);
+        View view = inflater.inflate(R.layout.fragment_puzzle, container, false);
+
+        TextView mScoreView = view.findViewById(R.id.scorePuzzle);
+
+        Vibrator v = (Vibrator) requireActivity().getSystemService(Context.VIBRATOR_SERVICE);
+
+        PuzzleCanvas puzzleCanvas = new PuzzleCanvas(requireActivity().getApplicationContext(), null, mGestureDetector, v, mScoreView, playerID, this);
         mGestureListener.setCanvas(puzzleCanvas);
 
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_puzzle, container, false);
-        ConstraintLayout cl = view.findViewById(R.id.canvas);
-        cl.addView(puzzleCanvas);
+        LinearLayout ll = view.findViewById(R.id.canvas);
+        ll.addView(puzzleCanvas);
 
         // Inflate the layout for this fragment
         return view;

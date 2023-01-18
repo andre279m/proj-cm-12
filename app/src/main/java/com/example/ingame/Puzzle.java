@@ -1,12 +1,10 @@
 package com.example.ingame;
 
+import android.content.Intent;
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
-
-import android.content.Context;
-import android.os.Bundle;
-import android.os.Vibrator;
-import android.view.GestureDetector;
 
 public class Puzzle extends AppCompatActivity {
 

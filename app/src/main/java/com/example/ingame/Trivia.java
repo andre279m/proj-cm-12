@@ -2,15 +2,20 @@ package com.example.ingame;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class Trivia extends AppCompatActivity {
 
-    private QuestionsLibrary mQuestionLibrary = new QuestionsLibrary();
+    private final QuestionsLibrary mQuestionLibrary = new QuestionsLibrary();
 
     private TextView mScoreView;
     private TextView mQuestionView;
@@ -19,64 +24,83 @@ public class Trivia extends AppCompatActivity {
     private Button mButtonChoice3;
     private Button mButtonChoice4;
 
-
     private String mAnswer;
     private int mScore = 0;
     private int mQuestionNumber = 0;
+
+    private int currentRound = 0;
+    private Timer timer;
+    private final TimerTask tt = new TimerTask() {
+        final int seconds = 15;
+        int i = 0;
+
+        public void run() {
+            i++;
+            if (i % seconds == 0){
+                timer.cancel();
+                timer.purge();
+                Toast.makeText(Trivia.this, "Timed out", Toast.LENGTH_SHORT).show();
+                updateQuestion();
+            }
+            else
+                System.out.println("Time left:" + (seconds - (i % seconds))); //TODO atualizar tempo no ecra?
+        }
+    };
+
+    private String playerID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trivia);
 
-        mScoreView = (TextView)findViewById(R.id.score);
-        mQuestionView = (TextView)findViewById(R.id.question);
-        mButtonChoice1 = (Button)findViewById(R.id.choice1);
-        mButtonChoice2 = (Button)findViewById(R.id.choice2);
-        mButtonChoice3 = (Button)findViewById(R.id.choice3);
-        mButtonChoice4 = (Button)findViewById(R.id.choice4);
+        Intent intent = getIntent();
+        playerID = intent.getStringExtra("playerID");
+
+        mScoreView = findViewById(R.id.score);
+        mQuestionView = findViewById(R.id.question);
+        mButtonChoice1 = findViewById(R.id.choice1);
+        mButtonChoice2 = findViewById(R.id.choice2);
+        mButtonChoice3 = findViewById(R.id.choice3);
+        mButtonChoice4 = findViewById(R.id.choice4);
+
+        timer = new Timer("trivia");
 
         updateQuestion();
 
         //Start of Button Listener for Button1
-        mButtonChoice1.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                //My logic for Button goes in here
+        mButtonChoice1.setOnClickListener(view -> {
+            //My logic for Button goes in here
 
-                if (mButtonChoice1.getText() == mAnswer){
-                    mScore = mScore + 1;
-                    updateScore(mScore);
-                    updateQuestion();
-                    //This line of code is optiona
-                    Toast.makeText(Trivia.this, "correct", Toast.LENGTH_SHORT).show();
+            if (mButtonChoice1.getText() == mAnswer) {
+                mScore += 1;
+                updateScore();
+                updateQuestion();
+                //This line of code is optiona
+                Toast.makeText(Trivia.this, "correct", Toast.LENGTH_SHORT).show();
 
-                }else {
-                    Toast.makeText(Trivia.this, "wrong", Toast.LENGTH_SHORT).show();
-                    updateQuestion();
-                }
+            } else {
+                Toast.makeText(Trivia.this, "wrong", Toast.LENGTH_SHORT).show();
+                updateQuestion();
             }
         });
 
         //End of Button Listener for Button1
 
         //Start of Button Listener for Button2
-        mButtonChoice2.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                //My logic for Button goes in here
+        mButtonChoice2.setOnClickListener(view -> {
+            //My logic for Button goes in here
 
-                if (mButtonChoice2.getText() == mAnswer){
-                    mScore = mScore + 1;
-                    updateScore(mScore);
-                    updateQuestion();
-                    //This line of code is optiona
-                    Toast.makeText(Trivia.this, "correct", Toast.LENGTH_SHORT).show();
+            if (mButtonChoice2.getText() == mAnswer) {
+                mScore = mScore + 1;
+                updateScore();
+                updateQuestion();
+                //This line of code is optiona
+                Toast.makeText(Trivia.this, "correct", Toast.LENGTH_SHORT).show();
 
-                }else {
-                    Toast.makeText(Trivia.this, "wrong", Toast.LENGTH_SHORT).show();
-                    updateQuestion();
-                }
+            } else {
+                Toast.makeText(Trivia.this, "wrong", Toast.LENGTH_SHORT).show();
+                updateQuestion();
             }
         });
 
@@ -84,51 +108,45 @@ public class Trivia extends AppCompatActivity {
 
 
         //Start of Button Listener for Button3
-        mButtonChoice3.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                //My logic for Button goes in here
+        mButtonChoice3.setOnClickListener(view -> {
+            //My logic for Button goes in here
 
-                if (mButtonChoice3.getText() == mAnswer){
-                    mScore = mScore + 1;
-                    updateScore(mScore);
-                    updateQuestion();
-                    //This line of code is optiona
-                    Toast.makeText(Trivia.this, "correct", Toast.LENGTH_SHORT).show();
-
-                }else {
-                    Toast.makeText(Trivia.this, "wrong", Toast.LENGTH_SHORT).show();
-                    updateQuestion();
-                }
+            if (mButtonChoice3.getText() == mAnswer) {
+                mScore = mScore + 1;
+                updateScore();
+                updateQuestion();
+                //This line of code is optiona
+                Toast.makeText(Trivia.this, "correct", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(Trivia.this, "wrong", Toast.LENGTH_SHORT).show();
+                updateQuestion();
             }
         });
 
         //End of Button Listener for Button3
 
         //Start of Button Listener for Button4
-        mButtonChoice4.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                //My logic for Button goes in here
+        mButtonChoice4.setOnClickListener(view -> {
+            //My logic for Button goes in here
 
-                if (mButtonChoice4.getText() == mAnswer){
-                    mScore = mScore + 1;
-                    updateScore(mScore);
-                    updateQuestion();
-                    //This line of code is optiona
-                    Toast.makeText(Trivia.this, "correct", Toast.LENGTH_SHORT).show();
+            if (mButtonChoice4.getText() == mAnswer) {
+                mScore = mScore + 1;
+                updateScore();
+                updateQuestion();
+                //This line of code is optiona
+                Toast.makeText(Trivia.this, "correct", Toast.LENGTH_SHORT).show();
 
-                }else {
-                    Toast.makeText(Trivia.this, "wrong", Toast.LENGTH_SHORT).show();
-                    updateQuestion();
-                }
+            } else {
+                Toast.makeText(Trivia.this, "wrong", Toast.LENGTH_SHORT).show();
+                updateQuestion();
             }
         });
-
         //End of Button Listener for Button4
+
+        timer.schedule(tt, 0, 1000);
     }
 
-    private void updateQuestion(){
+    private void updateQuestion() {
         mQuestionView.setText(mQuestionLibrary.getQuestion(mQuestionNumber));
         mButtonChoice1.setText(mQuestionLibrary.getChoice1(mQuestionNumber));
         mButtonChoice2.setText(mQuestionLibrary.getChoice2(mQuestionNumber));
@@ -136,11 +154,32 @@ public class Trivia extends AppCompatActivity {
         mButtonChoice4.setText(mQuestionLibrary.getChoice4(mQuestionNumber));
 
         mAnswer = mQuestionLibrary.getCorrectAnswer(mQuestionNumber);
-        mQuestionNumber++;
+        Random r = new Random();
+        mQuestionNumber = r.nextInt(51);
+
+        currentRound++;
+
+        timer.cancel();
+        timer.purge();
+        timer = new Timer();
+        timer.schedule(tt, 0, 1000);
+
+        int rounds = 5;
+        if (currentRound >= rounds) {
+            timer.cancel();
+            timer.purge();
+            Intent intentGameEnd = new Intent(this, GameEnd.class);
+            intentGameEnd.putExtra("State", "Game finished!");
+            intentGameEnd.putExtra("Score", mScore);//TODO mudar para algo com tempo
+            intentGameEnd.putExtra("playerID", playerID);
+            startActivity(intentGameEnd);
+            finish();
+        }
     }
 
 
-    private void updateScore(int point) {
+    @SuppressLint("SetTextI18n")
+    private void updateScore() {
         mScoreView.setText("" + mScore);
     }
 }

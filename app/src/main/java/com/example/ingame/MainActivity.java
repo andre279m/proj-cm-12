@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void startGame(String playerID) {
-        Intent intent = new Intent(this, Simon.class);
+        Intent intent = new Intent(this, Simon.class);//TODO mudaar para escolha de jogo
         intent.putExtra("playerID", playerID);
         startActivity(intent);
     }
