@@ -1,13 +1,13 @@
 package com.example.ingame;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Random;
 import java.util.Timer;
@@ -30,22 +30,6 @@ public class Trivia extends AppCompatActivity {
 
     private int currentRound = 0;
     private Timer timer;
-    private final TimerTask tt = new TimerTask() {
-        final int seconds = 15;
-        int i = 0;
-
-        public void run() {
-            i++;
-            if (i % seconds == 0){
-                timer.cancel();
-                timer.purge();
-                Toast.makeText(Trivia.this, "Timed out", Toast.LENGTH_SHORT).show();
-                updateQuestion();
-            }
-            else
-                System.out.println("Time left:" + (seconds - (i % seconds))); //TODO atualizar tempo no ecra?
-        }
-    };
 
     private String playerID;
 
@@ -142,8 +126,6 @@ public class Trivia extends AppCompatActivity {
             }
         });
         //End of Button Listener for Button4
-
-        timer.schedule(tt, 0, 1000);
     }
 
     private void updateQuestion() {
@@ -162,7 +144,7 @@ public class Trivia extends AppCompatActivity {
         timer.cancel();
         timer.purge();
         timer = new Timer();
-        timer.schedule(tt, 0, 1000);
+        timer.schedule(new TTask(timer), 0, 1000);
 
         int rounds = 5;
         if (currentRound >= rounds) {
@@ -181,5 +163,31 @@ public class Trivia extends AppCompatActivity {
     @SuppressLint("SetTextI18n")
     private void updateScore() {
         mScoreView.setText("" + mScore);
+    }
+
+    class TTask extends TimerTask {
+
+        final int seconds = 15;
+        private int i = 0;
+
+        Timer t;
+
+        public TTask(Timer t){
+            this.t = t;
+        }
+
+        @Override
+        public void run() {
+            i++;
+            if (i % seconds == 0){
+                t.cancel();
+                t.purge();
+
+                Trivia.this.runOnUiThread(()-> Toast.makeText(Trivia.this, "Timed out", Toast.LENGTH_SHORT).show());
+                updateQuestion();
+            }
+            else
+                System.out.println("Time left:" + (seconds - (i % seconds))); //TODO atualizar tempo no ecra?
+        }
     }
 }

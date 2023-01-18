@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
+
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -39,28 +40,6 @@ public class PuzzleCanvas extends View implements View.OnTouchListener{
 
     private final Vibrator v;
 
-    private final TimerTask tt = new TimerTask() {
-        final int seconds = 15;
-        int i = 0;
-
-        public void run() {
-            i++;
-            if (i % seconds == 0){
-                timer.cancel();
-                timer.purge();
-
-                pf.requireActivity().runOnUiThread(() -> Toast.makeText(pf.getActivity(), "Timed out", Toast.LENGTH_SHORT).show());
-                try {
-                    updatePuzzle();
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-            else
-                System.out.println("Time left:" + (seconds - (i % seconds))); //TODO atualizar tempo no ecra?
-        }
-    };
-
     private final String TAG = PuzzleCanvas.class.getSimpleName();
 
     private final float[][] goal = {{0.3f,0.3f},{}};//TODO adicionar mais posiçoes
@@ -73,7 +52,7 @@ public class PuzzleCanvas extends View implements View.OnTouchListener{
         this.mScoreView = mScoreView;
         this.playerID = playerID;
         this.pf = pf;
-        timer.schedule(tt, 0, 1000);
+        timer.schedule(new TTask(timer), 0, 1000);
     }
 
     @Override
@@ -161,7 +140,7 @@ public class PuzzleCanvas extends View implements View.OnTouchListener{
         timer.purge();
         Thread.sleep(1000);
         timer = new Timer();
-        timer.schedule(tt, 0, 1000);
+        timer.schedule(new TTask(timer), 0, 1000);
         currentRound++;
         int rounds = 5;
         if (currentRound >= rounds) {
@@ -189,6 +168,37 @@ public class PuzzleCanvas extends View implements View.OnTouchListener{
     public static int getScreenHeight() {
         return Resources.getSystem().getDisplayMetrics().heightPixels;
     }
+
+    class TTask extends TimerTask {
+
+        final int seconds = 15;
+        private int i = 0;
+
+        Timer t;
+
+        public TTask(Timer t){
+            this.t = t;
+        }
+
+        @Override
+        public void run() {
+            i++;
+            if (i % seconds == 0){
+                t.cancel();
+                t.purge();
+
+                pf.requireActivity().runOnUiThread(() -> Toast.makeText(pf.requireActivity(), "Timed out", Toast.LENGTH_SHORT).show());
+                try {
+                    updatePuzzle();
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            else
+                System.out.println("Time left:" + (seconds - (i % seconds))); //TODO atualizar tempo no ecra?
+        }
+    }
+
 
 }
 
