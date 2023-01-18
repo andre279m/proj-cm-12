@@ -75,8 +75,7 @@
         android:layout_height="180dp"
         android:layout_below="@id/textView2"
         android:layout_alignLeft="@id/strut"
-        app:cardCornerRadius="0dp"
-        >
+        app:cardCornerRadius="0dp" >
 
         <Button
             android:id="@+id/logout"
