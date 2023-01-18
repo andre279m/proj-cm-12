@@ -86,15 +86,15 @@ public class Simon extends AppCompatActivity {
             });
 
 
-        Button blue = findViewById(R.id.blue);
+        /*Button blue = findViewById(R.id.blue);
         Button green = findViewById(R.id.green);
         Button red = findViewById(R.id.red);
         Button yellow = findViewById(R.id.yellow);
 
         blue.setOnClickListener(__ -> model.answer(Movement.RIGHT));
         green.setOnClickListener(__ -> model.answer(Movement.LEFT));
-        red.setOnClickListener(__ -> model.answer(Movement.DOWN));
-        yellow.setOnClickListener(__ -> model.answer(Movement.UP));
+        red.setOnClickListener(__ -> model.answer(Movement.PUSH));
+        yellow.setOnClickListener(__ -> model.answer(Movement.UP));*/
     }
     @Override
     public void onResume() {
