@@ -53,3 +53,5 @@ Who can't play:
  
 ## References
 Colors for Elderly: https://eldertech.org/color-in-designing-technology-for-seniors/#:~:text=Vision%20problems%2C%20particularly%20yellowing%20of,are%20particular%20favorites%20of%20seniors
+
+Colors for ColorBlindness: https://davidmathlogic.com/colorblind/#%2338A3FF-%23EEAEE6-%2359CB9B-%23E88D36-%23A76BFF-%23000000
