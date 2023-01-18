@@ -42,7 +42,17 @@ public class PuzzleCanvas extends View implements View.OnTouchListener{
 
     private final String TAG = PuzzleCanvas.class.getSimpleName();
 
-    private final float[][] goal = {{0.3f,0.3f},{}};//TODO adicionar mais posiçoes
+    private final float[][] goal = {{0.5f,0.5f},
+            {0.5f,0.3f},
+            {0.7f,0.23f},
+            {0.9f,0.34f},
+            {0.9f,0.53f},
+            {0.3f,0.56f},
+            {0.6f,0.42f},
+            {0.2f,0.12f},
+            {0.4f,0.32f},
+            {0.6f,0.4f},
+            {0.8f,0.5f}};
 
     public PuzzleCanvas(Context context, @Nullable AttributeSet attrs, GestureDetector mGestureDetector, Vibrator v, TextView mScoreView, String playerID, PuzzleFragment pf) {
         super(context, attrs);
