@@ -56,7 +56,7 @@ public class HighScoreActivity extends AppCompatActivity {
                 }
                 Collections.sort(
                         list,
-                        (player1, player2) -> player2.getScore() - player1.getScore());
+                        (player1, player2) -> player2.getScoreSimon() - player1.getScoreSimon());
                 playerAdapter = new PlayerAdapter(HighScoreActivity.this,list);
                 recyclerView.setAdapter(playerAdapter);
                 playerAdapter.notifyDataSetChanged();
