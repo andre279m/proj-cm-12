@@ -160,6 +160,7 @@ public class PuzzleCanvas extends View implements View.OnTouchListener{
             intentGameEnd.putExtra("State", "Game finished!");
             intentGameEnd.putExtra("Score", mScore);//TODO mudar para algo com tempo
             intentGameEnd.putExtra("playerID", playerID);
+            intentGameEnd.putExtra("class", "Puzzle");
             pf.requireActivity().startActivity(intentGameEnd);
             pf.requireActivity().finish();
         }

@@ -154,6 +154,7 @@ public class Trivia extends AppCompatActivity {
             intentGameEnd.putExtra("State", "Game finished!");
             intentGameEnd.putExtra("Score", mScore);//TODO mudar para algo com tempo
             intentGameEnd.putExtra("playerID", playerID);
+            intentGameEnd.putExtra("class", "Trivia");
             startActivity(intentGameEnd);
             finish();
         }

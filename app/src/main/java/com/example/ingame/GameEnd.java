@@ -23,6 +23,8 @@ public class GameEnd extends AppCompatActivity {
 
     private String playerID;
 
+    private String classe;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +36,7 @@ public class GameEnd extends AppCompatActivity {
         String state = intent.getStringExtra("State");
         int score = intent.getIntExtra("Score",0);
         playerID = intent.getStringExtra("playerID");
+        classe = intent.getStringExtra("class");
 
         Log.v("ENDGAME" , state + score + playerID + "");
         TextView gameState = findViewById(R.id.gameState);
@@ -65,14 +68,33 @@ public class GameEnd extends AppCompatActivity {
                 PlayerModel playerModel = snapshot.getValue(PlayerModel.class);
                 Log.v("HighScore", "Highscore updated" + playerModel);
 
-                int currentScore = playerModel.getScoreSimon();
-                if (playerModel.getScoreSimon() < score){
-                    databaseReference.child(playerID).child("scoreSimon").setValue(score);
-                    Log.v("HighScore", "Highscore updated");
-                }
-                else {
-                    databaseReference.child(playerID).child("scoreSimon").setValue(playerModel.getScoreSimon());
-                    Log.v("HighScore", "Highscore updated");
+                if (classe.equals("Trivia")){
+                    if (playerModel.getScoreQuiz() < score){
+                        databaseReference.child(playerID).child("scoreQuiz").setValue(score);
+                        Log.v("HighScore", "Highscore updated");
+                    }
+                    else {
+                        databaseReference.child(playerID).child("scoreQuiz").setValue(playerModel.getScoreQuiz());
+                        Log.v("HighScore", "Highscore updated");
+                    }
+                } else if (classe.equals("Puzzle")) {
+                    if (playerModel.getScorePuzzle() < score){
+                        databaseReference.child(playerID).child("scorePuzzle").setValue(score);
+                        Log.v("HighScore", "Highscore updated");
+                    }
+                    else {
+                        databaseReference.child(playerID).child("scorePuzzle").setValue(playerModel.getScorePuzzle());
+                        Log.v("HighScore", "Highscore updated");
+                    }
+                } else if (classe.equals("Simon")) {
+                    if (playerModel.getScoreSimon() < score){
+                        databaseReference.child(playerID).child("scoreSimon").setValue(score);
+                        Log.v("HighScore", "Highscore updated");
+                    }
+                    else {
+                        databaseReference.child(playerID).child("scoreSimon").setValue(playerModel.getScoreSimon());
+                        Log.v("HighScore", "Highscore updated");
+                    }
                 }
             }
 

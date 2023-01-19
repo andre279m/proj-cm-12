@@ -45,6 +45,7 @@ public class Simon extends AppCompatActivity {
                 intentGameEnd.putExtra("State", round.getState().name());
                 intentGameEnd.putExtra("Score", round.getNumber());
                 intentGameEnd.putExtra("playerID", playerID);
+                intentGameEnd.putExtra("class", "Simon");
                 startActivity(intentGameEnd);
                 finish();
             }
