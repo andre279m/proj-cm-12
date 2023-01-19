@@ -147,7 +147,7 @@ public class Trivia extends AppCompatActivity {
         timer.schedule(new TTask(timer), 0, 1000);
 
         int rounds = 5;
-        if (currentRound >= rounds) {
+        if (currentRound > rounds) {
             timer.cancel();
             timer.purge();
             Intent intentGameEnd = new Intent(this, GameEnd.class);

@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void onButtonHighScoreClicked() {
-        Intent intentChangeHighscoreScreen = new Intent(this, HighScoreActivity.class);
+        Intent intentChangeHighscoreScreen = new Intent(this, ChooseLeaderBoard.class);
         startActivity(intentChangeHighscoreScreen);
     }
 
