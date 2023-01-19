@@ -1,10 +1,10 @@
 package com.example.ingame;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -36,7 +36,8 @@ public class MainActivity extends AppCompatActivity {
         buttonHighScore.setOnClickListener(__ -> onButtonHighScoreClicked());
         buttonSetUp.setOnClickListener(__ -> onButtonSetUpClicked(playerID));
         buttonLogout.setOnClickListener(__ -> onButtonLogoutClicked());
-        buttonPlay.setOnClickListener( __ -> startGame(playerID));}
+        buttonPlay.setOnClickListener( __ -> startGame(playerID));
+    }
 
 
     // Methods to start new activities
@@ -59,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void startGame(String playerID) {
-        Intent intent = new Intent(this, Simon.class);
+        Intent intent = new Intent(this, ChooseGame.class);
         intent.putExtra("playerID", playerID);
         startActivity(intent);
     }

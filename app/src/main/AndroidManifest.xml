@@ -6,14 +6,35 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_icon"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_icon_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.InGame"
+        android:theme="@style/Theme.InGame.Day"
         tools:targetApi="31">
         <activity
-            android:name=".ForgotPassword"
+            android:name=".ChooseGame"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".Simon"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".Puzzle"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".Trivia"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -27,7 +48,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".Simon"
+            android:name=".ForgotPassword"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

@@ -10,6 +10,16 @@
     <color name="soft_gray">#FF888888</color>
     <color name="blue">#FF03A9F4</color>
     <color name="orange">#FF9800</color>
+    <color name="pallette_1_blue">#38A3FF</color>
+    <color name="pallette_1_blue_darker">#1A6CB3</color>
+    <color name="pallette_2_pink">#EEAEE6</color>
+    <color name="pallette_2_pink_darker">#A37C9E</color>
+    <color name="pallette_3_green">#59CB9B</color>
+    <color name="pallette_3_green_darker">#479E79</color>
+    <color name="pallette_4_orange">#E88D36</color>
+    <color name="pallette_4_orange_darker">#9F6126</color>
+    <color name="pallette_5_purple">#A470F1</color>BA8BFF
+    <color name="pallette_5_purple_darker">#904BF4</color>
 
 
 </resources>
