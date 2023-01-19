@@ -1,6 +1,7 @@
 package com.example.ingame;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,16 +11,19 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerViewHolder> {
 
     Context context;
     ArrayList<PlayerModel> list;
+    String classe;
 
-    public PlayerAdapter(Context context, ArrayList<PlayerModel> list) {
+    public PlayerAdapter(Context context, ArrayList<PlayerModel> list, String classe) {
         this.context = context;
         this.list = list;
+        this.classe = classe;
     }
 
     @NonNull
@@ -34,7 +38,18 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerView
     public void onBindViewHolder(@NonNull PlayerViewHolder holder, int position) {
         PlayerModel player = list.get(position);
         holder.name.setText(player.getName());
-        holder.score.setText(Integer.toString(player.getScoreSimon()));
+        if (classe.equals("Simon")){
+
+            holder.score.setText(Integer.toString(player.getScoreSimon()));
+
+        } else if (classe.equals("Puzzle")) {
+
+            holder.score.setText(Integer.toString(player.getScorePuzzle()));
+
+        } else if (classe.equals("Trivia")) {
+
+            holder.score.setText(Integer.toString(player.getScoreQuiz()));
+        }
     }
 
     @Override

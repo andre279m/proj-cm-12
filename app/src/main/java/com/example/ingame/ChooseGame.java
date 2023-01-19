@@ -1,5 +1,6 @@
 package com.example.ingame;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -24,9 +25,9 @@ public class ChooseGame extends AppCompatActivity {
         String playerID = intent.getStringExtra("playerID");
 
         // connect buttons to their corresponding View
-        buttonSimon = findViewById(R.id.button2);
-        buttonPuzzle = findViewById(R.id.button3);
-        buttonTrivia = findViewById(R.id.button4);
+        buttonSimon = findViewById(R.id.simonBG);
+        buttonPuzzle = findViewById(R.id.puzzleBG);
+        buttonTrivia = findViewById(R.id.triviaBG);
 
         // Click listeners for each button
         buttonSimon.setOnClickListener(__ -> onButtonChooseSimon(playerID));

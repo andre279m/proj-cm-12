@@ -35,20 +35,23 @@ public class ChooseLeaderBoard extends AppCompatActivity {
     }
 
     private void onButtonChooseSimon(String playerID) {
-        Intent intent = new Intent(this, Simon.class);
-        intent.putExtra("playerID", playerID);
-        startActivity(intent);
+        Intent intentSimonHighscoreScreen = new Intent(this, HighScoreActivity.class);
+        intentSimonHighscoreScreen.putExtra("playerID", playerID);
+        intentSimonHighscoreScreen.putExtra("class", "Simon");
+        startActivity(intentSimonHighscoreScreen);
     }
 
     private void onButtonChoosePuzzle(String playerID) {
-        Intent intent = new Intent(this, Puzzle.class);
-        intent.putExtra("playerID", playerID);
-        startActivity(intent);
+        Intent intentPuzzleHighscoreScreen = new Intent(this, HighScoreActivity.class);
+        intentPuzzleHighscoreScreen.putExtra("playerID", playerID);
+        intentPuzzleHighscoreScreen.putExtra("class", "Puzzle");
+        startActivity(intentPuzzleHighscoreScreen);
     }
 
     private void onButtonChooseTrivia(String playerID) {
-        Intent intent = new Intent(this, Trivia.class);
+        Intent intent = new Intent(this, HighScoreActivity.class);
         intent.putExtra("playerID", playerID);
+        intent.putExtra("class", "Trivia");
         startActivity(intent);
     }
 }

@@ -10,19 +10,19 @@
         android:id="@+id/TextChoose"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
         android:layout_centerHorizontal="true"
-        android:text="Choose Game"
+        android:layout_marginTop="5dp"
+        android:text="Choose Highscores"
         android:textColor="@color/black"
         android:textSize="34sp"
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/bsimon"
+        android:id="@+id/SimonBG"
         android:layout_width="fill_parent"
         android:layout_height="210dp"
         android:layout_below="@id/TextChoose"
-        android:layout_above="@id/bpuzzle"
+        android:layout_above="@id/puzzleBG"
         android:layout_centerHorizontal="true"
         android:backgroundTint="@color/pallette_1_blue"
         android:text="Simon"
@@ -30,7 +30,7 @@
         android:textSize="40sp" />
 
     <Button
-        android:id="@+id/bpuzzle"
+        android:id="@+id/puzzleBG"
         android:layout_width="fill_parent"
         android:layout_height="210dp"
         android:layout_centerInParent="true"
@@ -41,10 +41,10 @@
         android:textSize="40sp" />
 
     <Button
-        android:id="@+id/btrivia"
+        android:id="@+id/triviaBG"
         android:layout_width="fill_parent"
         android:layout_height="210dp"
-        android:layout_below="@id/bpuzzle"
+        android:layout_below="@id/puzzleBG"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="0dp"
         android:layout_marginTop="10dp"

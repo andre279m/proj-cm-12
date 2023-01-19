@@ -26,6 +26,7 @@ public class HighScoreActivity extends AppCompatActivity {
     DatabaseReference databaseReference;
     PlayerAdapter playerAdapter;
     ArrayList<PlayerModel> list;
+    private String classe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +40,8 @@ public class HighScoreActivity extends AppCompatActivity {
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Users");
 
         list = new ArrayList<>();
-        playerAdapter = new PlayerAdapter(this,list);
+        classe = intent.getStringExtra("class");
+        playerAdapter = new PlayerAdapter(this,list, classe);
         recyclerView.setAdapter(playerAdapter);
         Log.v("why",""+list);
 
@@ -54,10 +56,32 @@ public class HighScoreActivity extends AppCompatActivity {
                     list.add(player);
 
                 }
-                Collections.sort(
-                        list,
-                        (player1, player2) -> player2.getScoreSimon() - player1.getScoreSimon());
-                playerAdapter = new PlayerAdapter(HighScoreActivity.this,list);
+                if (classe.equals("Simon")){
+
+                    Collections.sort(
+                            list,
+                            (player1, player2) -> player2.getScoreSimon() - player1.getScoreSimon());
+
+                        Log.v("HighScore", "Simon Highscore sorted");
+
+                } else if (classe.equals("Puzzle")) {
+
+                    Collections.sort(
+                            list,
+                            (player1, player2) -> player2.getScorePuzzle() - player1.getScorePuzzle());
+
+                        Log.v("HighScore", "Puzzle Highscore sorted");
+
+                } else if (classe.equals("Trivia")) {
+
+                        Collections.sort(
+                                list,
+                                (player1, player2) -> player2.getScoreQuiz() - player1.getScoreQuiz());
+
+                        Log.v("HighScore", "Trivia Highscore sorted");
+                }
+
+                playerAdapter = new PlayerAdapter(HighScoreActivity.this,list, classe);
                 recyclerView.setAdapter(playerAdapter);
                 playerAdapter.notifyDataSetChanged();
             }
