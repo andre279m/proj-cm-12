@@ -14,30 +14,30 @@
         android:layout_marginBottom="40dp">
 
         <TextView
+            android:id="@+id/score_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
             android:text="Score"
-            android:textSize="20sp"
-            android:layout_alignParentLeft="true"
-            android:id="@+id/score_text"/>
+            android:textSize="20sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/scorePuzzle"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:text="0"
             android:textSize="20sp"/>
 
     </RelativeLayout>
 
     <TextView
+        android:id="@+id/puzzleText"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:text="Find the correct spot"
-        android:textSize="20sp"
-        android:padding="8dp"
+        android:layout_height="53dp"
         android:layout_marginBottom="40dp"
-        android:id="@+id/puzzleText"/>
+        android:padding="8dp"
+        android:text="@string/action_puzzle"
+        android:textSize="20sp" />
 
 </LinearLayout>

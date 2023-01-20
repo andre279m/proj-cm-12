@@ -14,37 +14,39 @@
         android:layout_marginBottom="40dp">
 
         <TextView
+            android:id="@+id/score_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Score"
-            android:textSize="20sp"
-            android:layout_alignParentLeft="true"
-            android:id="@+id/score_text"/>
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true"
+            android:text="@string/score"
+            android:textSize="20sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/score"
-            android:layout_alignParentRight="true"
-            android:text="0"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:text="@string/initial_score"
             android:textSize="20sp"/>
 
     </RelativeLayout>
 
     <TextView
+        android:id="@+id/question"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:text="Which thing is alive?"
-        android:textSize="20sp"
-        android:padding="8dp"
+        android:layout_height="153dp"
         android:layout_marginBottom="40dp"
-        android:id="@+id/question"/>
+        android:padding="8dp"
+        android:text="@string/question_trivia"
+        android:textSize="20sp" />
 
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="bird"
+        android:text="@string/choice_1_trivia"
         android:background="#0091EA"
         android:textColor="#fff"
         android:padding="8dp"
@@ -54,7 +56,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="door"
+        android:text="@string/choice_2_trivia"
         android:background="#0091EA"
         android:textColor="#fff"
         android:padding="8dp"
@@ -64,7 +66,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="rock"
+        android:text="@string/choice_3_trivia"
         android:background="#0091EA"
         android:textColor="#fff"
         android:padding="8dp"
@@ -74,7 +76,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="phone"
+        android:text="@string/choice_4_trivia"
         android:background="#0091EA"
         android:textColor="#fff"
         android:padding="8dp"

@@ -1,3 +1,36 @@
 <resources>
     <string name="app_name">InGame</string>
+    <string name="email_address">Email Address</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="register">Register</string>
+    <string name="choose_game">Choose Game</string>
+    <string name="simon">Simon</string>
+    <string name="puzzle">Puzzle</string>
+    <string name="trivia">Trivia</string>
+    <string name="choose_highscores">Choose Highscores</string>
+    <string name="textview">TextView</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="go_back">Go Back</string>
+    <string name="highscore">Highscore</string>
+    <string name="ingame">InGame</string>
+    <string name="set_up">Set Up</string>
+    <string name="logout">Logout</string>
+    <string name="lets_play">Let\'s Play</string>
+    <string name="icon_of_game_content_description">Icon of Game: a person surrounded by 3 circles with 3 different colors (with the corresponding joining colors of each one). Representing all the pallette of Colors and all the diversity in the world.</string>
+    <string name="name">Name</string>
+    <string name="deaf_text">Deaf</string>
+    <string name="none_text">None</string>
+    <string name="blind_text">Blind</string>
+    <string name="mode">Mode</string>
+    <string name="score">Score</string>
+    <string name="waiting_firebase_change">...</string>
+    <string name="initial_score">0</string>
+    <string name="choice_2_trivia">door</string>
+    <string name="choice_3_trivia">rock</string>
+    <string name="question_trivia">Which thing is alive?</string>
+    <string name="choice_1_trivia">bird</string>
+    <string name="choice_4_trivia">phone</string>
+    <string name="action_puzzle">Find the correct spot</string>
 </resources>

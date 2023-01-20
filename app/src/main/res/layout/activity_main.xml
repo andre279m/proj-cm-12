@@ -10,9 +10,10 @@
         android:id="@+id/imageView"
         android:layout_width="135dp"
         android:layout_height="124dp"
-        android:layout_marginTop="5dp"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
         android:backgroundTint="@color/pallette_4_orange"
+        android:contentDescription="@string/icon_of_game_content_description"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/icon_ingame_final" />
 
@@ -22,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/imageView"
         android:layout_centerHorizontal="true"
-        android:text="InGame"
+        android:text="@string/ingame"
         android:textAllCaps="false"
         android:textColor="?android:attr/textColorPrimaryNoDisable"
         android:textSize="42sp"
@@ -42,7 +43,7 @@
         android:layout_width="fill_parent"
         android:layout_height="180dp"
         android:layout_below="@id/textView2"
-        android:layout_alignRight="@id/strut"
+        android:layout_alignEnd="@id/strut"
         android:elevation="5dp"
         app:cardMaxElevation="5dp"
         app:cardCornerRadius="0dp"
@@ -57,10 +58,10 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_below="@id/textView2"
-            android:layout_alignRight="@id/strut"
+            android:layout_alignEnd="@id/strut"
             android:layout_alignParentStart="true"
             android:backgroundTint="@color/pallette_1_blue"
-            android:text="Set Up"
+            android:text="@string/set_up"
             android:textColor="@color/black"
             android:textSize="24sp"
             android:textStyle="bold"
@@ -74,7 +75,7 @@
         android:layout_width="fill_parent"
         android:layout_height="180dp"
         android:layout_below="@id/textView2"
-        android:layout_alignLeft="@id/strut"
+        android:layout_alignStart="@id/strut"
         app:cardCornerRadius="0dp" >
 
         <Button
@@ -84,9 +85,9 @@
             android:layout_below="@id/textView2"
             android:layout_alignParentEnd="true"
             android:shape="rectangle"
-            android:layout_toRightOf="@id/setup"
+            android:layout_toEndOf="@id/setup"
             android:backgroundTint="@color/pallette_3_green"
-            android:text="Logout"
+            android:text="@string/logout"
             android:textColor="@color/black"
             android:textSize="24sp"
             android:textStyle="bold" />
@@ -99,21 +100,22 @@
         android:layout_below="@id/cardView"
         android:layout_marginTop="-12dp"
         android:backgroundTint="@color/pallette_4_orange"
-        android:text="Let's Play"
+        android:text="@string/lets_play"
         android:textColor="@color/black"
         android:textSize="34sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        tools:ignore="TextContrastCheck" />
 
     <Button
         android:id="@+id/highscore"
         android:layout_width="match_parent"
         android:layout_height="198dp"
         android:layout_below="@id/play"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="-12dp"
         android:layout_marginBottom="-12dp"
-        android:layout_centerHorizontal="true"
         android:backgroundTint="@color/pallette_5_purple"
-        android:text="highscore"
+        android:text="@string/highscore"
         android:textColor="@color/black"
         android:textSize="30sp"
         android:textStyle="bold" />

@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
-        android:text="HighScore"
+        android:text="@string/highscore"
         android:textColor="?android:attr/textColorPrimaryNoDisable"
         android:textSize="34sp"
         android:textStyle="bold" />

@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"
-        android:text="Choose Game"
+        android:text="@string/choose_game"
         android:textColor="?android:attr/textColorPrimaryNoDisable"
         android:textSize="34sp"
         android:textStyle="bold" />
@@ -21,11 +21,11 @@
         android:id="@+id/simonBG"
         android:layout_width="fill_parent"
         android:layout_height="210dp"
-        android:layout_below="@id/TextChoose"
         android:layout_above="@id/puzzleBG"
+        android:layout_below="@id/TextChoose"
         android:layout_centerHorizontal="true"
         android:backgroundTint="@color/pallette_1_blue"
-        android:text="Simon"
+        android:text="@string/simon"
         android:textColor="@color/black"
         android:textSize="40sp" />
 
@@ -36,7 +36,7 @@
         android:layout_centerInParent="true"
         android:layout_marginTop="10dp"
         android:backgroundTint="@color/pallette_3_green"
-        android:text="Puzzle"
+        android:text="@string/puzzle"
         android:textColor="@color/black"
         android:textSize="40sp" />
 
@@ -46,10 +46,10 @@
         android:layout_height="210dp"
         android:layout_below="@id/puzzleBG"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="0dp"
         android:layout_marginTop="10dp"
+        android:layout_marginBottom="0dp"
         android:backgroundTint="@color/pallette_4_orange"
-        android:text="Trivia"
+        android:text="@string/trivia"
         android:textColor="@color/black"
         android:textSize="40sp" />
 
