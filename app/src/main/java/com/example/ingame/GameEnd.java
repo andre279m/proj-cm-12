@@ -1,15 +1,14 @@
 package com.example.ingame;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModel;
-import androidx.lifecycle.ViewModelProvider;
-
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -18,13 +17,15 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class GameEnd extends AppCompatActivity {
-    private SharedViewModel sharedViewModel;
-    private AccelerometorSensor accelerometorSensor;
 
     private String playerID;
 
     private String classe;
 
+    public GameEnd() {
+    }
+
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,34 +68,35 @@ public class GameEnd extends AppCompatActivity {
 
                 PlayerModel playerModel = snapshot.getValue(PlayerModel.class);
                 Log.v("HighScore", "Highscore updated" + playerModel);
-
-                if (classe.equals("Trivia")){
-                    if (playerModel.getScoreQuiz() < score){
-                        databaseReference.child(playerID).child("scoreQuiz").setValue(score);
-                        Log.v("HighScore", "Highscore updated");
-                    }
-                    else {
-                        databaseReference.child(playerID).child("scoreQuiz").setValue(playerModel.getScoreQuiz());
-                        Log.v("HighScore", "Highscore updated");
-                    }
-                } else if (classe.equals("Puzzle")) {
-                    if (playerModel.getScorePuzzle() < score){
-                        databaseReference.child(playerID).child("scorePuzzle").setValue(score);
-                        Log.v("HighScore", "Highscore updated");
-                    }
-                    else {
-                        databaseReference.child(playerID).child("scorePuzzle").setValue(playerModel.getScorePuzzle());
-                        Log.v("HighScore", "Highscore updated");
-                    }
-                } else if (classe.equals("Simon")) {
-                    if (playerModel.getScoreSimon() < score){
-                        databaseReference.child(playerID).child("scoreSimon").setValue(score);
-                        Log.v("HighScore", "Highscore updated");
-                    }
-                    else {
-                        databaseReference.child(playerID).child("scoreSimon").setValue(playerModel.getScoreSimon());
-                        Log.v("HighScore", "Highscore updated");
-                    }
+                assert playerModel != null;
+                switch (classe) {
+                    case "Trivia":
+                        if (playerModel.getScoreQuiz() < score) {
+                            databaseReference.child(playerID).child("scoreQuiz").setValue(score);
+                            Log.v("HighScore", "Highscore updated");
+                        } else {
+                            databaseReference.child(playerID).child("scoreQuiz").setValue(playerModel.getScoreQuiz());
+                            Log.v("HighScore", "Highscore updated");
+                        }
+                        break;
+                    case "Puzzle":
+                        if (playerModel.getScorePuzzle() < score) {
+                            databaseReference.child(playerID).child("scorePuzzle").setValue(score);
+                            Log.v("HighScore", "Highscore updated");
+                        } else {
+                            databaseReference.child(playerID).child("scorePuzzle").setValue(playerModel.getScorePuzzle());
+                            Log.v("HighScore", "Highscore updated");
+                        }
+                        break;
+                    case "Simon":
+                        if (playerModel.getScoreSimon() < score) {
+                            databaseReference.child(playerID).child("scoreSimon").setValue(score);
+                            Log.v("HighScore", "Highscore updated");
+                        } else {
+                            databaseReference.child(playerID).child("scoreSimon").setValue(playerModel.getScoreSimon());
+                            Log.v("HighScore", "Highscore updated");
+                        }
+                        break;
                 }
             }
 

@@ -1,10 +1,10 @@
 package com.example.ingame;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -34,10 +34,12 @@ public class SetUpActivity extends AppCompatActivity {
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Users");
         databaseReference.child(playerID).addListenerForSingleValueEvent(new ValueEventListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 PlayerModel playerModel = snapshot.getValue(PlayerModel.class);
                 Log.v("HighScore", "Highscore updated" + playerModel);
+                assert playerModel != null;
                 int sumScore = playerModel.getScoreSimon() + playerModel.getScorePuzzle() + playerModel.getScoreQuiz();
                 nameView.setText(playerModel.getName());
                 disabilityView.setText(playerModel.getDisability());

@@ -137,7 +137,7 @@ public class Trivia extends AppCompatActivity {
 
         mAnswer = mQuestionLibrary.getCorrectAnswer(mQuestionNumber);
         Random r = new Random();
-        mQuestionNumber = r.nextInt(51);
+        mQuestionNumber = r.nextInt(mQuestionLibrary.getSize());
 
         currentRound++;
 

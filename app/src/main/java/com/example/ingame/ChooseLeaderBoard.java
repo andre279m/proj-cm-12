@@ -1,6 +1,5 @@
 package com.example.ingame;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -9,12 +8,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class ChooseLeaderBoard extends AppCompatActivity {
 
-    //initialize buttons
-    private Button buttonSimon;
-    private Button buttonPuzzle;
-    private Button buttonTrivia;
-    private Intent intent;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,18 +15,19 @@ public class ChooseLeaderBoard extends AppCompatActivity {
         setContentView(R.layout.activity_choose_leaderboard);
 
         //obtain information from the player ID
-        intent = getIntent();
+        Intent intent = getIntent();
         String playerID = intent.getStringExtra("playerID");
 
         // connect buttons to their corresponding View
-        buttonSimon = findViewById(R.id.simonBL);
-        buttonPuzzle = findViewById(R.id.puzzleBL);
-        buttonTrivia = findViewById(R.id.triviaBL);
+        //initialize buttons
+        Button buttonSimon = findViewById(R.id.simonBL);
+        Button buttonPuzzle = findViewById(R.id.puzzleBL);
+        Button buttonTrivia = findViewById(R.id.triviaBL);
 
         // Click listeners for each button
         buttonSimon.setOnClickListener(__ -> onButtonChooseSimon(playerID));
         buttonPuzzle.setOnClickListener(__ -> onButtonChoosePuzzle(playerID));
-        buttonTrivia.setOnClickListener( __ -> onButtonChooseTrivia(playerID));
+        buttonTrivia.setOnClickListener(__ -> onButtonChooseTrivia(playerID));
     }
 
     private void onButtonChooseSimon(String playerID) {

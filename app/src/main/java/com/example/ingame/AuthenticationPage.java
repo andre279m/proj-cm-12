@@ -75,6 +75,7 @@ public class AuthenticationPage extends AppCompatActivity {
             if (task.isSuccessful()){
                 Log.v("datass", "" + email);
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                assert user != null;
                 String userID = user.getUid();
                 if(user.isEmailVerified()){
                     //sharedViewModel.addPlayer(userID);

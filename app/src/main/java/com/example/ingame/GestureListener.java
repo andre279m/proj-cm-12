@@ -1,7 +1,6 @@
 package com.example.ingame;
 
 import android.view.GestureDetector;
-import android.view.MotionEvent;
 
 public class GestureListener extends GestureDetector.SimpleOnGestureListener implements GestureDetector.OnDoubleTapListener {
 

@@ -4,12 +4,14 @@ import static com.example.ingame.Movement.randomEnum;
 
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -196,21 +198,8 @@ enum State {
 enum Movement {
     UP, PUSH, LEFT, RIGHT;
 
-    Movement opposite() {
-        /* if (this == Movement.UP) {
-            return DOWN;
-        } else if (this == Movement.DOWN) {
-            return UP;
-        } else */ if (this == Movement.LEFT) {
-            return RIGHT;
-        } else {
-            return LEFT;
-        }
-
-    }
-
     public static <T extends Enum<?>> T randomEnum(Class<T> clazz) {
-        int size = clazz.getEnumConstants().length;
+        int size = Objects.requireNonNull(clazz.getEnumConstants()).length;
         int random = (int) (Math.random() * size);
         return clazz.getEnumConstants()[random];
     }
@@ -249,6 +238,7 @@ class ActionQuestion implements Question {
         return this.movement == movement;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "ActionQuestion{" +
@@ -283,6 +273,7 @@ class RepeatQuestion implements Question {
         return question.answer(movement);
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "ActionQuestion{" +
@@ -292,29 +283,3 @@ class RepeatQuestion implements Question {
     }
 }
 
-class OppositeQuestion implements Question {
-
-    private final Question question;
-    private final int id;
-
-    OppositeQuestion(Question question, int id) {
-        this.question = question;
-        this.id = id;
-    }
-
-    @Override
-    public int getId() {
-        return id;
-    }
-
-    @Override
-    public String getQuote() {
-        return "Faz o oposto do que fizeste no turno " + question.getId() + 1;
-    }
-
-    @Override
-    public Boolean answer(Movement movement) {
-        return question.answer(movement.opposite());
-    }
-
-}

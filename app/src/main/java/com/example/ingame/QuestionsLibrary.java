@@ -8,7 +8,7 @@ public class QuestionsLibrary {
             "This part of the plant attracts bees, butterflies and hummingbirds.",
             "The _______ holds the plant upright.",
             */
-    private String mQuestions [] = {
+    private final String[] mQuestions = {
             "O mercado Rosa Agulhas pertence a que freguesia da cidade de Lisboa?",
             "As \"arrufadas\" são um doce tradicional de onde?",
             "Uma das músicas de Amália Rodrigues chama-se \"vou dar de beber ___\"",
@@ -33,7 +33,6 @@ public class QuestionsLibrary {
             "Qual a capital do Irão?",
             "Manaus é a capital de que estado do Brasil?",
             "Se a biblioteca de Alexandria existisse hoje em dia, em que país se encontrava?",
-            "Em que sítio encontras este monumento? (cabeças da ilha da pascoa)",
             "Qual destes países não é obrigatório fazer tropa?",
             "Qual destes países chega primeiro ao Ano Novo?",
             "Que país faz fronteira com 14 países e possui 8 fusos horários?",
@@ -47,9 +46,7 @@ public class QuestionsLibrary {
             "Quem foi a primeira ginasta a conseguir um 10 perfeito?",
             "Quem escreveu a trilogia Hunger Games",
             "Qual destes não era um Ministério no livro 1984? ",
-            "Qual a deusa grega que se encontra nas medalha Olímpicas? (foto)",
-            "De que pintor é este quadro? (quando das bailarinas)",
-            "A que marca pertence este simbolo?",
+            "Qual a deusa grega que se encontra nas medalha Olímpicas?",
             "Mr.Darcy é uma personagem de que famoso clássico?",
             "Qual destes paises não falhou a nenhum dos Jogos Olímpicos da era moderna?",
             "Qual destes tenistas ganhou mais títulos individuais de Grand Slam?",
@@ -68,7 +65,7 @@ public class QuestionsLibrary {
             {"Bark", "Flower", "Roots"},
             {"Flower", "Leaves", "Stem"},
             */
-    private String mChoices [][] = {
+    private final String[][] mChoices = {
             {"Telheiras", "Alcântara", "Marvila", "Ajuda"},
             {"Lisboa", "Porto", "Coimbra", "Viseu"},
             {"à solidão", "à saudade", "à música", "à dor"},
@@ -93,7 +90,6 @@ public class QuestionsLibrary {
             {"Bagdá", "Teerão", "Kabul", "Beirute"},
             {"Bahia", "Mato Grosso", "Minas Gerais", "Amazonas"},
             {"Egito", "Grécia", "Itália", "Turquia"},
-            {"Nova Zelândia", "Ilha da Páscoa", "Indonésia", "Ilhas Fiji"},
             {"Israel", "Grécia", "Índia", "Coreia do Norte"},
             {"Japão", "Nova Zelândia", "Fiji", "Kiribati"},
             {"EUA", "China", "Russia", "Brasil "},
@@ -108,8 +104,6 @@ public class QuestionsLibrary {
             {"Suzanne Collins", "Leigh Bardugo", "J. K. Rowling", "Veronica Roth"},
             {"Ministério da Verdade", "Ministério do Amor", "Ministério da Paz", "Ministério da Justiça"},
             {"Artemis", "Nike", "Hera", "Héstia"},
-            {"Monet", "Diego Velazquez", "Edgar Degas", "Johannes Vermeer"},
-            {"Hyundai", "Peugeot", "Toyota", "Mercedez-Benz"},
             {"Amor de Perdição", "A Dama das Camélias", "A idade da Inocência", "Orgulho e Preconceito"},
             {"Austrália", "Portugal", "Alemanha", "Estados Unidos"},
             {"Rafael Nadal", "Roger Federer", "Novak Djokovic", "Serena Williams"},
@@ -124,7 +118,7 @@ public class QuestionsLibrary {
     };
 
     /*"Roots", "Leaves", "Flower", "Stem",*/
-    private String mCorrectAnswers[] = {
+    private final String[] mCorrectAnswers = {
             "Alcântara", "Coimbra", "à dor", "1986", "Vila de Rei",
             "Descobrem-se as verdades", "2015", "Vacina", "Lucinda", "Braga",
             "4", "3", "Portalegre",
@@ -132,12 +126,12 @@ public class QuestionsLibrary {
             "6", "Soprano", "Hattie McDaniel", "2015", "Amelia Earhart",
             "Arthur Conan Doyle", "Coração de Viana",
 
-            "Won", "Teerão", "Amazonas", "Egito", "Ilha da Páscoa",
+            "Won", "Teerão", "Amazonas", "Egito",
             "Índia", "Kiribati", "Rússia", "1991", "Rússia", "Japão",
 
             "116 anos", "Bailarino", "Peixes", "236", "Nadia Comaneci",
             "Suzanne Collins", "Ministério da Justiça", "Nike",
-            "Edgar Degas", "Peugeot", "Orgulho e Preconceito", "Austrália",
+            "Orgulho e Preconceito", "Austrália",
             "Serena Williams", "3", "22 meses", "2006", "da Revolta de Stonewall",
             "Prata", "1969", "Michael Phelps", "Miguel Ângelo"};
 
@@ -163,6 +157,10 @@ public class QuestionsLibrary {
 
     public String getCorrectAnswer(int a) {
         return mCorrectAnswers[a];
+    }
+
+    public int getSize(){
+        return mQuestions.length;
     }
 
 }

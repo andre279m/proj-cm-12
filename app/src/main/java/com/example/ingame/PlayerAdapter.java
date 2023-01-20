@@ -1,7 +1,7 @@
 package com.example.ingame;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,8 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerViewHolder> {
 
@@ -34,21 +32,26 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerView
         return new PlayerAdapter.PlayerViewHolder(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull PlayerViewHolder holder, int position) {
         PlayerModel player = list.get(position);
         holder.name.setText(player.getName());
-        if (classe.equals("Simon")){
+        switch (classe) {
+            case "Simon":
 
-            holder.score.setText(Integer.toString(player.getScoreSimon()));
+                holder.score.setText(Integer.toString(player.getScoreSimon()));
 
-        } else if (classe.equals("Puzzle")) {
+                break;
+            case "Puzzle":
 
-            holder.score.setText(Integer.toString(player.getScorePuzzle()));
+                holder.score.setText(Integer.toString(player.getScorePuzzle()));
 
-        } else if (classe.equals("Trivia")) {
+                break;
+            case "Trivia":
 
-            holder.score.setText(Integer.toString(player.getScoreQuiz()));
+                holder.score.setText(Integer.toString(player.getScoreQuiz()));
+                break;
         }
     }
 
