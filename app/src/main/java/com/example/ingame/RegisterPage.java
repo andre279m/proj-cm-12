@@ -65,7 +65,7 @@ public class RegisterPage extends AppCompatActivity implements View.OnClickListe
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-                        PlayerModel playerModel = new PlayerModel("None", name, 0,0,0, email);
+                        PlayerModel playerModel = new PlayerModel();
                         FirebaseDatabase.getInstance().getReference("Users")
                                 .child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid())
                                 .setValue(playerModel).addOnCompleteListener(task1 -> {

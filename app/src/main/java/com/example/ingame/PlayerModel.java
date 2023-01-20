@@ -8,13 +8,13 @@ public class PlayerModel {
     String email;
     String name;
 
-    public PlayerModel(String disability, String name, int scoreSimon, int scorePuzzle, int scoreQuiz, String email) {
-        this.disability = disability;
-        this.name = name;
-        this.scoreSimon = scoreSimon;
-        this.scorePuzzle = scorePuzzle;
-        this.scoreQuiz = scoreQuiz;
-        this.email = email;
+    public PlayerModel() {
+        this.disability = "None";
+        this.name = "Alex";
+        this.scoreSimon = 0;
+        this.scorePuzzle = 0;
+        this.scoreQuiz = 0;
+        this.email = "Alex@email.com";
     }
 
     public String getDisability() {
