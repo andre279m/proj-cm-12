@@ -80,7 +80,7 @@ public class PuzzleCanvas extends View implements View.OnTouchListener{
             case MotionEvent.ACTION_DOWN:
                 float distance = calculateDistanceBetweenPointsWithHypot(eventX, eventY, goal[mPuzzleNumber][0]*getScreenWidth(), goal[mPuzzleNumber][1]*getScreenHeight());
                 long[] ts = {10};
-                int a = (int) (-(distance /10) + 255);//TODO ajustes a sensibilidade
+                int a = (int) (-(distance /5) + 255);//TODO ajustes a sensibilidade
                 if (a < 0)
                     a=0;
                 int[] as = {a};
@@ -101,7 +101,7 @@ public class PuzzleCanvas extends View implements View.OnTouchListener{
             case MotionEvent.ACTION_MOVE:
                 distance = calculateDistanceBetweenPointsWithHypot(eventX,eventY,goal[mPuzzleNumber][0],goal[mPuzzleNumber][1]);
                 ts = new long[]{10};
-                a = (int) (-(distance /10) + 255);//TODO ajustes a sensibilidade
+                a = (int) (-(distance /5) + 255);//TODO ajustes a sensibilidade
                 if (a < 0)
                     a=0;
                 Log.d(TAG, distance + " ola " + a);
@@ -111,6 +111,7 @@ public class PuzzleCanvas extends View implements View.OnTouchListener{
                 }
                 if (distance < 100){
                     Toast.makeText(pf.getActivity(), "Found it!", Toast.LENGTH_SHORT).show();
+                    mScore++;
                     updateScore();
                     try {
                         updatePuzzle();

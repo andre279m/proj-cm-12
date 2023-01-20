@@ -2,7 +2,6 @@ package com.example.ingame;
 
 import static com.example.ingame.Movement.randomEnum;
 
-import android.content.Intent;
 import android.util.Log;
 
 import androidx.lifecycle.LiveData;
@@ -11,7 +10,6 @@ import androidx.lifecycle.ViewModel;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -39,7 +37,7 @@ class Round {
     }
 }
 public class SimonSharedViewModel extends ViewModel {
-    private final static int ANSWER_TIMEOUT = 5_000;
+    private final static int ANSWER_TIMEOUT = 10_000;
     private final static int DOWN_TIME = 3_000;
 
     // win, game over, answering, downtime
