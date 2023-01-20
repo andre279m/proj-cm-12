@@ -13,7 +13,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"
         android:text="Choose Highscores"
-        android:textColor="@color/black"
+        android:textColor="?android:attr/textColorPrimaryNoDisable"
         android:textSize="34sp"
         android:textStyle="bold" />
 

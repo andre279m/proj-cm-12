@@ -20,17 +20,17 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/imageView"
+        android:layout_centerHorizontal="true"
         android:text="InGame"
         android:textAllCaps="false"
-        android:textColor="@color/black"
+        android:textColor="?android:attr/textColorPrimaryNoDisable"
         android:textSize="42sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
-        android:layout_below="@id/imageView"
-        android:layout_centerHorizontal="true" />
+        app:layout_constraintTop_toTopOf="@+id/imageView" />
 
     <View android:id="@+id/strut"
         android:layout_width="0dp"
